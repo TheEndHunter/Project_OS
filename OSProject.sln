@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33326.253
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bootloader", "Bootloader\Bootloader.csproj", "{729C4247-7231-4007-B1F9-0FA84986B943}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "UEFI", "UEFI\UEFI.shproj", "{E9AA15D9-7CB8-4579-AD75-ABBA4135C3E4}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Internal", "Internal\Internal.shproj", "{8B79628E-2BF5-4BA0-B633-F2D652560188}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "System", "System\System.shproj", "{CBC0F2C3-34AE-4FB2-8D70-7A1A6E664288}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kernel", "Kernel\Kernel.csproj", "{E003E906-9C1F-4BA0-B273-3BD9624B7A26}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM64 = Debug|ARM64
+		Debug|x64 = Debug|x64
+		Release|ARM64 = Release|ARM64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{729C4247-7231-4007-B1F9-0FA84986B943}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{729C4247-7231-4007-B1F9-0FA84986B943}.Debug|ARM64.Build.0 = Debug|ARM64
+		{729C4247-7231-4007-B1F9-0FA84986B943}.Debug|x64.ActiveCfg = Debug|x64
+		{729C4247-7231-4007-B1F9-0FA84986B943}.Debug|x64.Build.0 = Debug|x64
+		{729C4247-7231-4007-B1F9-0FA84986B943}.Release|ARM64.ActiveCfg = Release|ARM64
+		{729C4247-7231-4007-B1F9-0FA84986B943}.Release|ARM64.Build.0 = Release|ARM64
+		{729C4247-7231-4007-B1F9-0FA84986B943}.Release|x64.ActiveCfg = Release|x64
+		{729C4247-7231-4007-B1F9-0FA84986B943}.Release|x64.Build.0 = Release|x64
+		{E003E906-9C1F-4BA0-B273-3BD9624B7A26}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{E003E906-9C1F-4BA0-B273-3BD9624B7A26}.Debug|ARM64.Build.0 = Debug|ARM64
+		{E003E906-9C1F-4BA0-B273-3BD9624B7A26}.Debug|x64.ActiveCfg = Debug|x64
+		{E003E906-9C1F-4BA0-B273-3BD9624B7A26}.Debug|x64.Build.0 = Debug|x64
+		{E003E906-9C1F-4BA0-B273-3BD9624B7A26}.Release|ARM64.ActiveCfg = Release|ARM64
+		{E003E906-9C1F-4BA0-B273-3BD9624B7A26}.Release|ARM64.Build.0 = Release|ARM64
+		{E003E906-9C1F-4BA0-B273-3BD9624B7A26}.Release|x64.ActiveCfg = Release|x64
+		{E003E906-9C1F-4BA0-B273-3BD9624B7A26}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D2FBBDA8-61FA-4B1B-BA39-B59F917191A4}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Internal\Internal.projitems*{729c4247-7231-4007-b1f9-0fa84986b943}*SharedItemsImports = 5
+		System\System.projitems*{729c4247-7231-4007-b1f9-0fa84986b943}*SharedItemsImports = 5
+		UEFI\UEFI.projitems*{729c4247-7231-4007-b1f9-0fa84986b943}*SharedItemsImports = 5
+		Internal\Internal.projitems*{8b79628e-2bf5-4ba0-b633-f2d652560188}*SharedItemsImports = 13
+		System\System.projitems*{cbc0f2c3-34ae-4fb2-8d70-7a1a6e664288}*SharedItemsImports = 13
+		Internal\Internal.projitems*{e003e906-9c1f-4ba0-b273-3bd9624b7a26}*SharedItemsImports = 5
+		System\System.projitems*{e003e906-9c1f-4ba0-b273-3bd9624b7a26}*SharedItemsImports = 5
+		UEFI\UEFI.projitems*{e9aa15d9-7cb8-4579-ad75-abba4135c3e4}*SharedItemsImports = 13
+	EndGlobalSection
+EndGlobal

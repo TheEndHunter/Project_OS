@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>e9aa15d9-7cb8-4579-ad75-abba4135c3e4</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Efi</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)CapsuleUnion.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CAPSULE_FLAGS.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DEVICETREE_TABLES_GUIDS.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_ALLOCATE_TYPE.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_BACKGROUND_COLOR.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_BOOT_SERVICES.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_CAPSULE_BLOCK_DESCRIPTOR.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_CAPSULE_HEADER.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_CAPSULE_TABLE.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_CERT_BLOCK_RSA_2048_SHA256.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_CERT_GUIDS.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_CERT_X509_SHA256.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_CERT_X509_SHA384.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_CERT_X509_SHA512.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_CONFIGURATION_TABLE.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_DEVICE_PATH_PROTOCOL.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_EVENT.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_EVENT_GROUP_GUIDS.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_HANDLE.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_INPUT_KEY.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_INSTALL_MULTIPLE_PROTOCOL.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_INTERFACE_TYPE.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_IPv4_ADDRESS.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_IPv6_ADDRESS.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_IP_ADDRESS.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_KEY_DATA.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_KEY_SHIFT_STATE.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_KEY_STATE.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_KEY_TOGGLE_STATE.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_LBA.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_LOCATE_SEARCH_TYPE.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_MAC_ADDRESS.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_MD5_HASH.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_MEMORY_ATTRIBUTES.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_MEMORY_DESCRIPTOR.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_MEMORY_TYPE.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_OPEN_PROTOCOL.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_OPEN_PROTOCOL_INFORMATION_ENTRY.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_POINTER_SERVICE_HELPERS.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_RESET_TYPE.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_RT_PROPERTIES_TABLE.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_RUNTIME_SERVICES.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_RUNTIME_SERVICES_SUPPORTED.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_SHA1_HASH.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_SHA224_HASH.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_SHA256_HASH.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_SHA384_HASH.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_SHA512_HASH.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_SIGNATURE_DATA.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_SIGNATURE_LIST.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_SIMPLE_TEXT_INPUT_EX_PROTOCOL.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_SIMPLE_TEXT_INPUT_PROTOCOL.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_STATUS.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_SYSTEM_TABLE.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_TABLE_HEADER.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_TEXT_COLOR.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_TIME.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_TIMER_DELAY.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_TIME_CAPABILITIES.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_TIME_DAYLIGHT.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_TPL.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_UNINSTALL_MULTIPLE_PROTOCOL.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_VARIABLE_ATTRIBUTES.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_VARIABLE_AUTHENTICATION.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_VARIABLE_AUTHENTICATION_2.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_VARIABLE_AUTHENTICATION_3.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_VARIABLE_AUTHENTICATION_3_CERT_ID.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_VARIABLE_AUTHENTICATION_3_NONCE.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SIMPLE_TEXT_OUTPUT_MODE.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UEFI.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UnicodeDrawingCharacters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UnicodeLineCharacters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)usings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WIN_CERTIFICATE.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WIN_CERTIFICATE_EFI_PKCS1_15.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WIN_CERTIFICATE_UEFI_GUID.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WIN_CERT_TYPE.cs" />
+  </ItemGroup>
+</Project>

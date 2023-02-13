@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>cbc0f2c3-34ae-4fb2-8d70-7a1a6e664288</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>System</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Actions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AppContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Array.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Attribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AttributeTargets.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AttributeUsageAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Boolean.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Byte.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Char.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Delegate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\CodeAnalysis\AllowNullAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\CodeAnalysis\ConstantExpectedAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\CodeAnalysis\DisallowNullAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\CodeAnalysis\DoesNotReturnAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\CodeAnalysis\DoesNotReturnIfAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\CodeAnalysis\MaybeNullAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\CodeAnalysis\MaybeNullWhenAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\CodeAnalysis\MemberNotNullAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\CodeAnalysis\MemberNotNullWhenAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\CodeAnalysis\NotNullAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\CodeAnalysis\NotNullIfNotNullAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\CodeAnalysis\NotNullWhenAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\CodeAnalysis\StringSyntaxAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\CodeAnalysis\UnscopedRefAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Double.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enum.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FlagsAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Funcs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Guid.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Int16.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Int32.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Int64.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IntPtr.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MulticastDelegate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Nullable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Object.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ParamArrayAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RuntimeFieldHandle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RuntimeMethodHandle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RuntimeTypeHandle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runtime\CompilerServices\ExtensionAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runtime\CompilerServices\IntrinsicAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runtime\CompilerServices\RuntimeFeature.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runtime\CompilerServices\RuntimeHelpers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runtime\InteropServices\CharSet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runtime\InteropServices\FieldOffsetAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runtime\InteropServices\LayoutKind.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runtime\InteropServices\StructLayoutAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runtime\InteropServices\UnmanagedType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runtime\RuntimeExportAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SByte.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Single.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)String.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UInt16.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UInt32.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UInt64.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UIntPtr.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ValueType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Void.cs" />
+  </ItemGroup>
+</Project>

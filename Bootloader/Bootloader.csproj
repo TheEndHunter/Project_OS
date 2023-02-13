@@ -1,0 +1,300 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net7.0</TargetFramework>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<DebugType>embedded</DebugType>
+		<LangVersion>Preview</LangVersion>
+		<FileAlignment>512</FileAlignment>
+		<RuntimeMetadataVersion>v4.0.30319</RuntimeMetadataVersion>
+		<NoStdLib>true</NoStdLib>
+		<NoConfig>true</NoConfig>
+		<NoCompilerStandardLib>true</NoCompilerStandardLib>
+		<NoStandardLibraries>true</NoStandardLibraries>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+		<StartupObject>Program</StartupObject>
+		<EntryPointSymbol>EfiMain</EntryPointSymbol>
+		<LinkerSubsystem>EFI_APPLICATION</LinkerSubsystem>
+		<IncludeStandardLibaries>False</IncludeStandardLibaries>
+		<LinkerMachineType>EFI_</LinkerMachineType>
+		<Deterministic>true</Deterministic>
+		
+		<PublishAot>true</PublishAot>
+		<DefineConstants>$(DefineConstants);TARGET_UEFI;NATIVE_AOT;NATIVEAOT</DefineConstants>
+		<RootNamespace></RootNamespace>
+		<AssemblyExt>.EFI</AssemblyExt>
+		<OutExt>.EFI</OutExt>
+		<Nullable>Enable</Nullable>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<BuildVHDX>true</BuildVHDX>
+		<EnablePreviewFeatures>True</EnablePreviewFeatures>
+		<Platforms>ARM64;x64</Platforms>
+		<DefineConstants Condition="'$(Platform)'=='x64'">$(DefineConstants);TARGET_AMD64;PLATFORM_AMD64;TARGET_64BIT;BIT64</DefineConstants>
+		<DefineConstants Condition="'$(Platform)'=='ARM64'">$(DefineConstants);TARGET_ARM64;PLATFORM_ARM64;TARGET_64BIT;BIT64</DefineConstants>
+		<!--TargetName-->
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Platform)'=='x64'">
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<AssemblyName>BOOTX64</AssemblyName>
+		<Platform>X64</Platform>
+		<PublishProtocol>FileSystem</PublishProtocol>
+		<_TargetId Condition="'$(Configuration)'=='Release'">x64Release</_TargetId>
+		<_TargetId Condition="'$(Configuration)'=='Debug'">x64Debug</_TargetId>
+		<PlatformTarget>x64</PlatformTarget>
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<PublishDir>..\Publish\$(Configuration)_$(RuntimeIdentifier)</PublishDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Platform)'=='ARM64'">
+		
+		<RuntimeIdentifier>win-arm64</RuntimeIdentifier>
+		<AssemblyName>BOOTAA64</AssemblyName>
+		<Platform>ARM64</Platform>
+		<PublishProtocol>FileSystem</PublishProtocol>
+		<_TargetId Condition="'$(Configuration)'=='Release'">arm64Release</_TargetId>
+		<_TargetId Condition="'$(Configuration)'=='Debug'">arm64Debug</_TargetId>
+		<PlatformTarget>arm64</PlatformTarget>
+		<RuntimeIdentifier>win-arm64</RuntimeIdentifier>
+		<PublishDir>..\Publish\$(Configuration)_$(RuntimeIdentifier)</PublishDir>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<ilcSystemModule>$(AssemblyName)</ilcSystemModule>
+	</PropertyGroup>
+
+	<!--
+    EFI follows the Windows ABI so we would need to pretend we're compiling for Windows. Should be possible
+    with targetos ILC argument, but I don't have bandwidth to test. Plus we need to run linker somehow after.
+  -->
+	<Target Name="ErrorOut" Condition="'$(OS)' != 'Windows_NT'" BeforeTargets="Compile">
+		<Error Text="This sample is only supported on Windows for now, sorry" />
+	</Target>
+
+
+	<Target Name="CleanVHDX" AfterTargets="Clean">
+		<ConvertToAbsolutePath Paths="$(PublishDir)" AbsolutePaths="AbsPaths">
+			<Output TaskParameter="AbsolutePaths" PropertyName="VHDFileFolder" />
+		</ConvertToAbsolutePath>
+		<PropertyGroup>
+			<VHDXFileName>$(SolutionName).vhdx</VHDXFileName>
+			<VHDXFilePath>$(VHDFileFolder)$(VHDXFileName)</VHDXFilePath>
+			<VHDFileName>$(SolutionName).vhd</VHDFileName>
+			<VHDFilePath>$(VHDFileFolder)$(VHDFileName)</VHDFilePath>
+			<DriveLetter>W</DriveLetter>
+			<DetachVHDLines>
+				select vdisk file=$(VHDXFilePath)
+				select partition 2
+				remove letter=$(DriveLetter)
+				detach vdisk
+			</DetachVHDLines>
+		</PropertyGroup>
+		<Message Text="Cleaning Publish Directory..." Importance="high" />
+		<WriteLinesToFile File="$(PublishDir)detachvhd.txt" Overwrite="true" Lines="$(DetachVHDLines)" />
+		<Exec Command="diskpart /s &quot;$(PublishDir)detachvhd.txt&quot;" ContinueOnError="true" />
+		<Delete Files="$(VHDXFilePath);$(VHDFilePath)" />
+	</Target>
+
+
+	<Target Name="PublishVHDX" AfterTargets="CopyNativeBinary" Condition="'$(BuildVHDX)' == 'true'" Inputs="$(PublishDir)$(AssemblyName).exe" Outputs="$(PublishDir)zerosharp.vhdx;$(PublishDir)zerosharp.vhd">
+		<ConvertToAbsolutePath Paths="$(PublishDir)" AbsolutePaths="AbsPaths">
+			<Output TaskParameter="AbsolutePaths" PropertyName="VHDFileFolder" />
+		</ConvertToAbsolutePath>
+		<MakeDir Directories="$(PublishDir);$(VHDFileFolder);" />
+		<PropertyGroup>
+			<VHDXFileName>$(SolutionName).vhdx</VHDXFileName>
+			<VHDXFilePath>$(VHDFileFolder)$(VHDXFileName)</VHDXFilePath>
+			<VHDFileName>$(SolutionName).vhd</VHDFileName>
+			<VHDFilePath>$(VHDFileFolder)$(VHDFileName)</VHDFilePath>
+			<DriveLetter>W</DriveLetter>
+			<PSExecConvertToVHD>"Convert-VHD -Path "$(VHDXFilePath)" -DestinationPath "$(VHDFilePath)""</PSExecConvertToVHD>
+			<AttachVHDLines>
+				create vdisk file=$(VHDXFilePath) maximum=500
+				select vdisk file=$(VHDXFilePath)
+				attach vdisk
+				convert gpt
+				create partition efi size=100
+				format quick fs=fat32 label="System"
+				assign letter=$(DriveLetter)
+			</AttachVHDLines>
+			<Startupnsh>
+				@echo -off
+				mode 80 25
+
+				cls
+				if exist .\EFI\BOOT\$(AssemblyName).efi then
+				.\EFI\BOOT\$(AssemblyName).efi
+				goto END
+				endif
+
+				if exist fs0:\EFI\BOOT\$(AssemblyName).efi then
+				fs0:
+				echo Found $(AssemblyName).efi on fs0:
+				EFI\BOOT\$(AssemblyName).efi
+				goto END
+				endif
+
+				if exist fs1:\efi\boot\$(AssemblyName).efi then
+				fs1:
+				echo Found $(AssemblyName).efi on fs1:
+				efi\boot\$(AssemblyName).efi
+				goto END
+				endif
+
+				if exist fs2:\EFI\BOOT\$(AssemblyName).efi then
+				fs2:
+				echo Found $(AssemblyName).efi on fs2:
+				EFI\BOOT\$(AssemblyName).efi
+				goto END
+				endif
+
+				if exist fs3:\EFI\BOOT\$(AssemblyName).efi then
+				fs3:
+				echo Found $(AssemblyName).efi on fs3:
+				EFI\BOOT\$(AssemblyName).efi
+				goto END
+				endif
+
+				if exist fs4:\EFI\BOOT\$(AssemblyName).efi then
+				fs4:
+				echo Found $(AssemblyName).efi on fs4:
+				EFI\BOOT\$(AssemblyName).efi
+				goto END
+				endif
+
+				if exist fs5:\EFI\BOOT\$(AssemblyName).efi then
+				fs5:
+				echo Found $(AssemblyName).efi on fs5:
+				EFI\BOOT\$(AssemblyName).efi
+				goto END
+				endif
+
+				if exist fs6:\EFI\BOOT\$(AssemblyName).efi then
+				fs6:
+				echo Found $(AssemblyName).efi on fs6:
+				EFI\BOOT\$(AssemblyName).efi
+				goto END
+				endif
+
+				if exist fs7:\EFI\BOOT\$(AssemblyName).efi then
+				fs7:
+				echo Found $(AssemblyName).efi on fs7:
+				EFI\BOOT\$(AssemblyName).efi
+				goto END
+				endif
+				
+				if exist fs8:\EFI\BOOT\$(AssemblyName).efi then
+				fs8:
+				echo Found $(AssemblyName).efi on fs8:
+				EFI\BOOT\$(AssemblyName).efi
+				goto END
+				endif
+				
+				if exist fs9:\EFI\BOOT\$(AssemblyName).efi then
+				fs9:
+				echo Found $(AssemblyName).efi on fs9:
+				EFI\BOOT\$(AssemblyName).efi
+				goto END
+				endif
+				
+				if exist fs10:\EFI\BOOT\$(AssemblyName).efi then
+				fs10:
+				echo Found $(AssemblyName).efi on fs10:
+				EFI\BOOT\$(AssemblyName).efi
+				goto END
+				endif
+				
+				if exist fs11:\EFI\BOOT\$(AssemblyName).efi then
+				fs11:
+				echo Found $(AssemblyName).efi on fs11:
+				EFI\BOOT\$(AssemblyName).efi
+				goto END
+				endif
+				if exist fs12:\EFI\BOOT\$(AssemblyName).efi then
+				fs12:
+				echo Found $(AssemblyName).efi on fs12:
+				EFI\BOOT\$(AssemblyName).efi
+				goto END
+				endif
+				
+				if exist fs13:\EFI\BOOT\$(AssemblyName).efi then
+				fs13:
+				echo Found $(AssemblyName).efi on fs13:
+				EFI\BOOT\$(AssemblyName).efi
+				goto END
+				endif
+				
+				if exist fs14:\EFI\BOOT\$(AssemblyName).efi then
+				fs14:
+				echo Found $(AssemblyName).efi on fs14:
+				EFI\BOOT\$(AssemblyName).efi
+				goto END
+				endif
+				
+				if exist fs15:\EFI\BOOT\$(AssemblyName).efi then
+				fs15:
+				echo Found $(AssemblyName).efi on fs15:
+				EFI\BOOT\$(AssemblyName).efi
+				goto END
+				endif
+				
+				if exist fs16:\EFI\BOOT\$(AssemblyName).efi then
+				fs16:
+				echo Found $(AssemblyName).efi on fs16:
+				EFI\BOOT\$(AssemblyName).efi
+				goto END
+				endif
+				
+				echo "Unable to find $(AssemblyName).efi".
+				:END
+
+			</Startupnsh>
+			<DetachVHDLines>
+				select vdisk file=$(VHDXFilePath)
+				select partition 2
+				remove letter=$(DriveLetter)
+				detach vdisk
+			</DetachVHDLines>
+			<bootloaderSource>$(PublishDir)\$(AssemblyName).exe</bootloaderSource>
+			<VHDImageFolder>$(DriveLetter):\</VHDImageFolder>
+			<bootloaderDestination>$(VHDImageFolder)EFI\BOOT\$(AssemblyName).efi</bootloaderDestination>
+		</PropertyGroup>
+		<WriteLinesToFile File="$(PublishDir)attachvhd.txt" Overwrite="true" Lines="$(AttachVHDLines)" />
+		<WriteLinesToFile File="$(PublishDir)startup.nsh" Overwrite="true" Lines="$(Startupnsh)" />
+		<WriteLinesToFile File="$(PublishDir)detachvhd.txt" Overwrite="true" Lines="$(DetachVHDLines)" />
+		<Delete Files="$(VHDXFilePath);$(VHDFilePath)" ContinueOnError="true" />
+		<Message Text="Creating VHDX at $(VHDXFilePath)..." Importance="High" />
+		<Exec Command="diskpart /s &quot;$(PublishDir)attachvhd.txt&quot;" />
+		<Message Text="Copying files to VHDX" Importance="high" />
+		<Copy SourceFiles="$([System.IO.Path]::GetFullPath('$(bootloaderSource)'))" DestinationFiles="$(bootloaderDestination)" />
+		<Copy SourceFiles="$(PublishDir)startup.nsh" DestinationFiles="$(DriveLetter):\startup.nsh" />
+		<Message Text="Complete... Detaching VHDX" Importance="high" />
+		<Exec Command="diskpart /s &quot;$(PublishDir)detachvhd.txt&quot;" />
+		<Message Text="Detached VHD" Importance="high" />
+		<Delete Files="$(PublishDir)detachvhd.txt" />
+		<Delete Files="$(PublishDir)attachvhd.txt" />
+		<Message Text="Creating VHD File..." Importance="High" />
+		<Exec Command="powershell -command $(PSExecConvertToVHD)" />
+		<Message Text="Converted to VHD File at $(VHDFilePath)." Importance="High" />
+	</Target>
+	
+	
+	<!-- The project file pretends this is .NET, but it's not .NET. Remove all assembly references the .NET SDK added. -->
+	<Target Name="CustomizeReferences" BeforeTargets="BeforeCompile" AfterTargets="FindReferenceAssembliesForReferences">
+		<ItemGroup>
+			<ReferencePathWithRefAssemblies Remove="@(ReferencePathWithRefAssemblies)" />
+			<ReferencePath Remove="@(ReferencePath)" />
+		</ItemGroup>
+	</Target>
+	<!-- The AOT compiler would want to mirror these as AppContext switches. Prevent that. -->
+	<Target Name="RemoveHostConfigurationOptions" BeforeTargets="WriteIlcRspFileForCompilation" DependsOnTargets="PrepareForILLink">
+		<ItemGroup>
+			<RuntimeHostConfigurationOption Remove="@(RuntimeHostConfigurationOption)" />
+		</ItemGroup>
+	</Target>
+	<Import Project="..\UEFI\UEFI.projitems" Label="Shared" />
+	<Import Project="..\System\System.projitems" Label="Shared" />
+	<Import Project="..\Internal\Internal.projitems" Label="Shared" />
+</Project>
+

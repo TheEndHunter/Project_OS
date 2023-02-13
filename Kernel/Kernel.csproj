@@ -1,0 +1,108 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net7.0</TargetFramework>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<DebugType>embedded</DebugType>
+		<LangVersion>Preview</LangVersion>
+		<FileAlignment>512</FileAlignment>
+		<RuntimeMetadataVersion>v4.0.30319</RuntimeMetadataVersion>
+		<NoStdLib>true</NoStdLib>
+		<NoConfig>true</NoConfig>
+		<NoCompilerStandardLib>true</NoCompilerStandardLib>
+		<NoStandardLibraries>true</NoStandardLibraries>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+		<EntryPointSymbol>EfiMain</EntryPointSymbol>
+		<LinkerSubsystem>EFI_APPLICATION</LinkerSubsystem>
+		<LinkerMachineType>EFI_</LinkerMachineType>
+		<InvariantGlobalization>true</InvariantGlobalization>
+		<Deterministic>true</Deterministic>
+
+		<UTF8OutPut>False</UTF8OutPut>
+		<PublishAot>true</PublishAot>
+		<DefineConstants>$(DefineConstants);TARGET_UEFI;NATIVE_AOT;NATIVEAOT</DefineConstants>
+		<RootNamespace></RootNamespace>
+		<AssemblyExt>.EFI</AssemblyExt>
+		<OutExt>.EFI</OutExt>
+		<Nullable>Enable</Nullable>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<BuildVHDX>true</BuildVHDX>
+		<EnablePreviewFeatures>True</EnablePreviewFeatures>
+		<Platforms>ARM64;x64</Platforms>
+		<!--TargetName-->
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Platform)'=='x64'">
+		<DefineConstants>$(DefineConstants);TARGET_AMD64;PLATFORM_AMD64;TARGET_64BIT;BIT64</DefineConstants>
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<AssemblyName>BOOTX64</AssemblyName>
+		<Platform>X64</Platform>
+		<PublishProtocol>FileSystem</PublishProtocol>
+		<_TargetId Condition="'$(Configuration)'=='Release'">x64Release</_TargetId>
+		<_TargetId Condition="'$(Configuration)'=='Debug'">x64Debug</_TargetId>
+		<PlatformTarget>x64</PlatformTarget>
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<PublishDir>..\Publish\$(Configuration)_$(RuntimeIdentifier)</PublishDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Platform)'=='arm64'">
+		<DefineConstants>$(DefineConstants);TARGET_ARM64;PLATFORM_ARM64;TARGET_64BIT;BIT64</DefineConstants>
+		<RuntimeIdentifier>win-arm64</RuntimeIdentifier>
+		<AssemblyName>BOOTAA64</AssemblyName>
+		<Platform>ARM64</Platform>
+		<PublishProtocol>FileSystem</PublishProtocol>
+		<_TargetId Condition="'$(Configuration)'=='Release'">arm64Release</_TargetId>
+		<_TargetId Condition="'$(Configuration)'=='Debug'">arm64Debug</_TargetId>
+		<PlatformTarget>arm64</PlatformTarget>
+		<RuntimeIdentifier>win-arm64</RuntimeIdentifier>
+		<PublishDir>..\Publish\$(Configuration)_$(RuntimeIdentifier)</PublishDir>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<ilcSystemModule>$(AssemblyName)</ilcSystemModule>
+	</PropertyGroup>
+
+	<!--
+    EFI follows the Windows ABI so we would need to pretend we're compiling for Windows. Should be possible
+    with targetos ILC argument, but I don't have bandwidth to test. Plus we need to run linker somehow after.
+  -->
+	<Target Name="ErrorOut" Condition="'$(OS)' != 'Windows_NT'" BeforeTargets="Compile">
+		<Error Text="This sample is only supported on Windows for now, sorry" />
+	</Target>
+
+	<!-- The project file pretends this is .NET, but it's not .NET. Remove all assembly references the .NET SDK added. -->
+	<Target Name="CustomizeReferences" BeforeTargets="BeforeCompile" AfterTargets="FindReferenceAssembliesForReferences">
+		<ItemGroup>
+			<ReferencePathWithRefAssemblies Remove="@(ReferencePathWithRefAssemblies)" />
+			<ReferencePath Remove="@(ReferencePath)" />
+		</ItemGroup>
+	</Target>
+	<!-- The AOT compiler would want to mirror these as AppContext switches. Prevent that. -->
+	<Target Name="RemoveHostConfigurationOptions" BeforeTargets="WriteIlcRspFileForCompilation" DependsOnTargets="PrepareForILLink">
+		<ItemGroup>
+			<RuntimeHostConfigurationOption Remove="@(RuntimeHostConfigurationOption)" />
+		</ItemGroup>
+	</Target>
+	<Import Project="..\Internal\Internal.projitems" Label="Shared" />
+	<Import Project="..\System\System.projitems" Label="Shared" />
+
+	<PropertyGroup>
+		<OutputAssembly>$(AssemblyName).$(AssemblyExt)</OutputAssembly>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="obj\**" />
+	  <EmbeddedResource Remove="obj\**" />
+	  <None Remove="obj\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PrivateSdkAssemblies Remove="obj\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <FrameworkAssemblies Remove="obj\**" />
+	</ItemGroup>
+</Project>
+

@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>0698d054-3a28-4740-8bd2-148005e4b00b</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>System</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AccessedThroughPropertyAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Actions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AllowNullAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AppContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Array.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Array1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Attribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AttributeTargets.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AttributeUsageAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Boolean.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Byte.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CallConvCdecl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CallConvFastcall.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CallConvStdcall.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CallConvThiscall.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CallerArgumentExpressionAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CallerFilePathAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CallerLineNumberAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CallerMemberNameAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CallingConvention.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Char.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CharSet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ConditionalAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ConstantExpectedAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CustomConstantAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Delegate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DisallowNullAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DoesNotReturnAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DoesNotReturnIfAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Double.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EagerStaticClassConstructionAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exception.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtensionAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FieldOffsetAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FixedBufferAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FlagsAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Funcs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Guid.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)InAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IndexerNameAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Int16.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Int32.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Int64.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IntPtr.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IntrinsicAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IsByRefLikeAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IsVolatile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ITuple.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LayoutKind.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MaybeNullAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MaybeNullWhenAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MemberNotNullAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MemberNotNullWhenAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MethodImplAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MulticastDelegate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NotNullAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NotNullIfNotNullAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NotNullWhenAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Nullable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Object.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OutAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ParamArrayAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RuntimeExportAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RuntimeFeature.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RuntimeFieldHandle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RuntimeHelpers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RuntimeMethodHandle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RuntimeTypeHandle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)String.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StringSyntaxAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StructLayoutAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TupleElementNamesAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Type.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UnmanagedCallConvAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UnmanagedCallersOnlyAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UnmanagedType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unsafe.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UnsafeValueTypeAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UnscopedRefAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ValueType.cs" />
+    <Compile Include="..\temp\Enum.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SByte.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Single.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UInt16.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UInt32.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UInt64.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UIntPtr.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Void.cs" />
+  </ItemGroup>
+</Project>
