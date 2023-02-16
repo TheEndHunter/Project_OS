@@ -3,25 +3,78 @@
 using System;
 using System.Runtime;
 
-public unsafe class Program
+public static class Colours
 {
+    public const uint Black = 0xFF000000;
+    public const uint Red = 0xFFFF0000;
+    public const uint Green = 0xFF00FF00;
+    public const uint Blue = 0xFF0000FF;
+    public const uint White = 0xFFFFFFFF;
+}
+
+public static unsafe class Program
+{
+    public static bool CheckError(EFI_STATUS s, char* errMsg)
+    {
+        bool a = (s != EFI_STATUS.SUCCESS);
+        if (a)
+        {
+            _sysTable->ConOut->SetAttribute(EFI_TEXT_COLOR.RED, EFI_BACKGROUND_COLOR.BLACK);
+            _sysTable->ConOut->ClearScreen();
+            _sysTable->ConOut->OutputString(errMsg);
+        }
+        return a;
+    }
+
+    const string keyboardMessage = "Press Any Key To Continue...";
+    const string msg_GOP_INITIALIZED = "GOP Initialized...";
+    const string err_ALLOC_FAILED = "Allocation Failed...";
+    const string err_GOP_NOT_INITIALIZED = "GOP Not Initialized...";
+    public static readonly void* nullptr = (void*)0;
     public static void Main() { }
 
+    private static EFI_SYSTEM_TABLE* _sysTable;
+    private static EFI_GRAPHICS_OUTPUT_PROTOCOL* _GOP;
+    private static EFI_GRAPHICS_OUTPUT_BLT_PIXEL _GraphicsColour;
+
     [System.Runtime.RuntimeExport("EfiMain")]
-    public static unsafe long EfiMain(EFI_HANDLE imageHandle, EFI_SYSTEM_TABLE* systemTable)
+    public static unsafe UIntn EfiMain(EFI_HANDLE imageHandle, EFI_SYSTEM_TABLE* systemTable)
     {
-        string hello = "Hello world!";
-        string Goodbye = "Good Bye world!";
-        fixed (char* hptr = hello)
+        _sysTable = systemTable;
+
+        fixed (char* kbmsg = keyboardMessage)
         {
-            fixed (char* gptr = Goodbye)
+            systemTable->ConOut->SetAttribute(EFI_TEXT_COLOR.BROWN, EFI_BACKGROUND_COLOR.GREEN);
+            systemTable->ConOut->ClearScreen();
+
+            systemTable->ConOut->OutputString(kbmsg);
+
+            systemTable->ConIn->Reset();
+
+            EFI_INPUT_KEY key;
+
+            while (systemTable->ConIn->ReadKeyStroke(&key) == EFI_STATUS.NOT_READY) ;
+            systemTable->ConOut->Reset();
+            systemTable->ConOut->SetAttribute(EFI_TEXT_COLOR.WHITE, EFI_BACKGROUND_COLOR.BLACK);
+            systemTable->ConOut->ClearScreen();
+
+
+            fixed (Guid* gid = &UEFI.GUIDs.PROTOCOL.EFI_GRAPHICS_OUTPUT_PROTOCOL)
             {
-                systemTable->ConOut->SetAttribute(EFI_TEXT_COLOR.BLACK, EFI_BACKGROUND_COLOR.CYAN);
-                systemTable->ConOut->ClearScreen();
-                systemTable->ConOut->OutputString(hptr);
-                systemTable->ConOut->OutputString(Environment.NewLine);
-                systemTable->ConOut->OutputString(gptr);
+                EFI_STATUS s = systemTable->BootServices->LocateProtocol(gid, nullptr, (void**)_GOP);
+                fixed (char* err = err_GOP_NOT_INITIALIZED)
+                {
+                    if (!CheckError(s, err))
+                    {
+                        fixed (char* msg = msg_GOP_INITIALIZED)
+                        {
+                            systemTable->ConOut->OutputString(msg);
+                        }
+                    }
+                }
+
             }
+
         }
         while (true) ;
     }

@@ -15,9 +15,9 @@ namespace Efi
         private readonly unsafe delegate* unmanaged<EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL*, EFI_STATUS> _ClearScreen;
         private readonly unsafe delegate* unmanaged<EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL*, UIntn, UIntn, EFI_STATUS> _SetCursorPosition;
         private readonly unsafe delegate* unmanaged<EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL*, bool, EFI_STATUS> _EnableCursor;
-        private readonly SIMPLE_TEXT_OUTPUT_MODE* Mode;
+        public readonly SIMPLE_TEXT_OUTPUT_MODE* Mode;
 
-        public unsafe EFI_STATUS Reset(bool verify)
+        public unsafe EFI_STATUS Reset(bool verify = false)
         {
             fixed (EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL* s = &this)
             {

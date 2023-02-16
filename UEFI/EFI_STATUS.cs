@@ -12,7 +12,7 @@
         /// </summary>
         LOAD_ERROR = 0x8000_0000_0000_0001,
         /// <summary>
-        /// A parameter was incorrect.
+        /// _A parameter was incorrect.
         /// </summary>
         INVALID_PARAMETER,
         /// <summary>
@@ -42,7 +42,7 @@
         /// </summary>
         WRITE_PROTECTED,
         /// <summary>
-        /// A resource has run out.
+        /// _A resource has run out.
         /// </summary>
         OUT_OF_RESOURCES,
         /// <summary>
@@ -74,7 +74,7 @@
         /// </summary>
         NO_RESPONSE,
         /// <summary>
-        /// A mapping to a device does not exist.
+        /// _A mapping to a device does not exist.
         /// </summary>
         NO_MAPPING,
         /// <summary>
@@ -98,11 +98,11 @@
         /// </summary>
         ICMP_ERROR,
         /// <summary>
-        /// A TFTP error occurred during the network operation.
+        /// _A TFTP error occurred during the network operation.
         /// </summary>
         TFTP_ERROR,
         /// <summary>
-        /// A protocol error occurred during the network operation.
+        /// _A protocol error occurred during the network operation.
         /// </summary>
         PROTOCOL_ERROR,
         /// <summary>
@@ -115,7 +115,7 @@
         /// </summary>
         SECURITY_VIOLATION,
         /// <summary>
-        /// A CRC error was detected.
+        /// _A CRC error was detected.
         /// </summary>
         CRC_ERROR,
         /// <summary>
@@ -141,7 +141,7 @@
         /// </summary>
         IP_ADDRESS_CONFLICT,
         /// <summary>
-        /// A HTTP error occurred during the network operation
+        /// _A HTTP error occurred during the network operation
         /// </summary>
         HTTP_ERROR,
         /// <summary>

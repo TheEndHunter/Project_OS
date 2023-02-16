@@ -11,7 +11,6 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)CapsuleUnion.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CAPSULE_FLAGS.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DEVICETREE_TABLES_GUIDS.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EFI_ALLOCATE_TYPE.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EFI_BACKGROUND_COLOR.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EFI_BOOT_SERVICES.cs" />
@@ -19,14 +18,18 @@
     <Compile Include="$(MSBuildThisFileDirectory)EFI_CAPSULE_HEADER.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EFI_CAPSULE_TABLE.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EFI_CERT_BLOCK_RSA_2048_SHA256.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)EFI_CERT_GUIDS.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EFI_CERT_X509_SHA256.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EFI_CERT_X509_SHA384.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EFI_CERT_X509_SHA512.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EFI_CONFIGURATION_TABLE.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EFI_DEVICE_PATH_PROTOCOL.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EFI_EVENT.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)EFI_EVENT_GROUP_GUIDS.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_GRAPHICS_OUTPUT_BLT_OPERATION.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_GRAPHICS_OUTPUT_BLT_PIXEL.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_GRAPHICS_OUTPUT_MODE_INFORMATION.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_GRAPHICS_OUTPUT_PROTOCOL.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_GRAPHICS_OUTPUT_PROTOCOL_MODE.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_GRAPHICS_PIXEL_FORMAT.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EFI_HANDLE.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EFI_INPUT_KEY.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EFI_INSTALL_MULTIPLE_PROTOCOL.cs" />
@@ -47,6 +50,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)EFI_MEMORY_TYPE.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EFI_OPEN_PROTOCOL.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EFI_OPEN_PROTOCOL_INFORMATION_ENTRY.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EFI_PIXEL_BITMASK.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EFI_POINTER_SERVICE_HELPERS.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EFI_RESET_TYPE.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EFI_RT_PROPERTIES_TABLE.cs" />

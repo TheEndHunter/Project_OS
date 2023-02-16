@@ -10,5 +10,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Runtime\CompilerHelpers\StartupCodeHelpers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runtime\InternalCalls.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runtime\MethodTable.Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runtime\MethodTable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NativeFotmat\NativeFormat.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NativeFotmat\NativeFormatReader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NativeFotmat\NativeFormatReader.Metadata.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NativeFotmat\NativeFormatReader.Primitives.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runtime\RuntimeConstants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runtime\TypeManagerHandle.cs" />
   </ItemGroup>
 </Project>

@@ -4,25 +4,37 @@ namespace System
 {
     public partial struct Guid
     {
-        private readonly int _a;   // Do not rename (binary serialization)
-        private readonly short _b; // Do not rename (binary serialization)
-        private readonly short _c; // Do not rename (binary serialization)
-        private readonly byte _d;  // Do not rename (binary serialization)
-        private readonly byte _e;  // Do not rename (binary serialization)
-        private readonly byte _f;  // Do not rename (binary serialization)
-        private readonly byte _g;  // Do not rename (binary serialization)
-        private readonly byte _h;  // Do not rename (binary serialization)
-        private readonly byte _i;  // Do not rename (binary serialization)
-        private readonly byte _j;  // Do not rename (binary serialization)
-        private readonly byte _k;  // Do not rename (binary serialization)
+        private uint _a;   // Do not rename (binary serialization)
+        private ushort _b; // Do not rename (binary serialization)
+        private ushort _c; // Do not rename (binary serialization)
+        private byte _d;  // Do not rename (binary serialization)
+        private byte _e;  // Do not rename (binary serialization)
+        private byte _f;  // Do not rename (binary serialization)
+        private byte _g;  // Do not rename (binary serialization)
+        private byte _h;  // Do not rename (binary serialization)
+        private byte _i;  // Do not rename (binary serialization)
+        private byte _j;  // Do not rename (binary serialization)
+        private byte _k;  // Do not rename (binary serialization)
+
+        public uint a { get => _a; internal set { _a = value; } }
+        public ushort b { get => _b; internal set { _b = value; } }
+        public ushort c { get => _c; internal set { _c = value; } }
+        public byte d { get => _d; internal set { _d = value; } }
+        public byte e { get => _e; internal set { _e = value; } }
+        public byte f { get => _f; internal set { _f = value; } }
+        public byte g { get => _g; internal set { _g = value; } }
+        public byte h { get => _h; internal set { _h = value; } }
+        public byte i { get => _i; internal set { _i = value; } }
+        public byte j { get => _j; internal set { _j = value; } }
+        public byte k { get => _k; internal set { _k = value; } }
 
         [Intrinsic]
         public static readonly Guid Empty;
         public Guid(uint a, ushort b, ushort c, byte d, byte e, byte f, byte g, byte h, byte i, byte j, byte k)
         {
-            _a = (int)a;
-            _b = (short)b;
-            _c = (short)c;
+            _a = a;
+            _b = b;
+            _c = c;
             _d = d;
             _e = e;
             _f = f;
@@ -33,7 +45,7 @@ namespace System
             _k = k;
         }
 
-        // Creates a new GUID initialized to the value represented by the arguments.
+        // Creates a new GUID initialized to the _value represented by the arguments.
         public Guid(int a, short b, short c, byte[] d)
         {
             if (d is null || d.Length != 8)
@@ -42,9 +54,9 @@ namespace System
                 return;
             }
 
-            _a = a;
-            _b = b;
-            _c = c;
+            _a = (uint)a;
+            _b = (ushort)b;
+            _c = (ushort)c;
             _k = d[7]; // hoist bounds checks
             _d = d[0];
             _e = d[1];
@@ -55,13 +67,13 @@ namespace System
             _j = d[6];
         }
 
-        // Creates a new GUID initialized to the value represented by the
+        // Creates a new GUID initialized to the _value represented by the
         // arguments.  The bytes are specified like this to avoid endianness issues.
         public Guid(int a, short b, short c, byte d, byte e, byte f, byte g, byte h, byte i, byte j, byte k)
         {
-            _a = a;
-            _b = b;
-            _c = c;
+            _a = (uint)a;
+            _b = (ushort)b;
+            _c = (ushort)c;
             _d = d;
             _e = e;
             _f = f;
