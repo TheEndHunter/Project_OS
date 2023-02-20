@@ -129,7 +129,7 @@ namespace System.Runtime.CompilerServices
             typeof(T).ToString(); // Type token used by the actual method body
             throw new PlatformNotSupportedException();
 #else
-            return ref AddByteOffset(ref source, (IntPtr)(elementOffset * (nint)sizeof(T)));
+            return ref AddByteOffset(ref source, (IntPtr)((nint)elementOffset * sizeof(T)));
 #endif
 
             // ldarg .0
@@ -794,7 +794,7 @@ namespace System.Runtime.CompilerServices
             typeof(T).ToString();
             throw new PlatformNotSupportedException();
 #else
-            return ref SubtractByteOffset(ref source, (IntPtr)(elementOffset * (nint)sizeof(T)));
+            return ref SubtractByteOffset(ref source, (IntPtr)((nint)elementOffset * sizeof(T)));
 #endif
 
             // ldarg .0

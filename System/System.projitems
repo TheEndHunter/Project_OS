@@ -51,6 +51,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\CorElementType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\MethodImplAttributes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RuntimeFieldHandle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runtime\CompilerServices\CallerArgumentExpressionAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runtime\CompilerServices\CallerFilePathAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runtime\CompilerServices\CallerLineNumberAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runtime\CompilerServices\CallerMemberNameAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Runtime\CompilerServices\MethodCodeType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Runtime\CompilerServices\Unsafe.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Runtime\RuntimeImports.cs" />

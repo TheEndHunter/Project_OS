@@ -49,7 +49,6 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Platform)'=='ARM64'">
-		
 		<RuntimeIdentifier>win-arm64</RuntimeIdentifier>
 		<AssemblyName>BOOTAA64</AssemblyName>
 		<Platform>ARM64</Platform>

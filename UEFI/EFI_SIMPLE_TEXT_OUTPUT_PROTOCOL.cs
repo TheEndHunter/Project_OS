@@ -24,8 +24,10 @@ namespace Efi
                 return _Reset(s, verify);
             }
         }
+
         public unsafe EFI_STATUS OutputString(string msg)
         {
+            if (msg.Length < 1) return EFI_STATUS.SUCCESS;
             fixed (EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL* s = &this)
             {
                 fixed (char* c = msg)
@@ -36,6 +38,7 @@ namespace Efi
         }
         public unsafe EFI_STATUS OutputString(char* msg)
         {
+            if (msg != null) return EFI_STATUS.SUCCESS;
             fixed (EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL* s = &this)
             {
                 return _OutputString(s, msg);
@@ -43,6 +46,7 @@ namespace Efi
         }
         public unsafe EFI_STATUS TestString(string msg)
         {
+            if (msg.Length < 1) return EFI_STATUS.SUCCESS;
             fixed (EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL* s = &this)
             {
                 fixed (char* c = msg)
@@ -53,6 +57,7 @@ namespace Efi
         }
         public unsafe EFI_STATUS TestString(char* msg)
         {
+            if (msg != null) return EFI_STATUS.SUCCESS;
             fixed (EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL* s = &this)
             {
                 return _TestString(s, msg);

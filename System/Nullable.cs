@@ -14,7 +14,7 @@ namespace System
     public partial struct Nullable<T> where T : struct
     {
         private readonly bool hasValue; // Do not rename (binary serialization)
-        internal T value; // Do not rename (binary serialization) or make readonly (can be mutated in ToString, etc.)
+        public T value; // Do not rename (binary serialization) or make readonly (can be mutated in ToString, etc.)
 
         public Nullable(T value)
         {
@@ -39,13 +39,24 @@ namespace System
             }
         }
 
+        internal ref T GetRef()
+        {
+            unsafe
+            {
+                fixed (T* a = &value)
+                {
+                    return ref Unsafe.AsRef<T>(a);
+                }
+            }
+        }
+
+
         public readonly T GetValueOrDefault() => value;
 
         public readonly T GetValueOrDefault(T defaultValue) =>
             hasValue ? value : defaultValue;
 
-        public static implicit operator Nullable<T>(T value) =>
-            new Nullable<T>(value);
+        public static implicit operator Nullable<T>(T value) => new Nullable<T>(value);
 
         public static explicit operator T(Nullable<T> value) => value!.Value;
     }
@@ -73,7 +84,6 @@ namespace System
             return null;
         }
 
-
         /// <summary>
         /// Retrieves a readonly reference to the location in the <see cref="Nullable{T}"/> instance where the value is stored.
         /// </summary>
@@ -89,8 +99,7 @@ namespace System
         {
             unsafe
             {
-                T* a = &nullable.value;
-                return ref Unsafe.AsRef<T>(a);
+                return ref nullable.GetRef();
             }
         }
     }

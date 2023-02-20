@@ -272,6 +272,10 @@ namespace Efi
         {
             return _LocateHandleBuffer(searchType, guid, a, b, handle);
         }// EFI 1.1+
+        public EFI_STATUS LocateProtocol(Guid* guid, nint protocol, void** handle)
+        {
+            return _LocateProtocol(guid, (void*)protocol, handle);
+        }// EFI 1.1+
         public EFI_STATUS LocateProtocol(Guid* guid, void* protocol, void** handle)
         {
             return _LocateProtocol(guid, protocol, handle);

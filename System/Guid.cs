@@ -2,7 +2,7 @@
 
 namespace System
 {
-    public partial struct Guid
+    public struct Guid
     {
         private uint _a;   // Do not rename (binary serialization)
         private ushort _b; // Do not rename (binary serialization)
