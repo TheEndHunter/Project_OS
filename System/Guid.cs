@@ -1,7 +1,9 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace System
 {
+    [StructLayout(LayoutKind.Sequential, Size = 16)]
     public struct Guid
     {
         private uint _a;   // Do not rename (binary serialization)

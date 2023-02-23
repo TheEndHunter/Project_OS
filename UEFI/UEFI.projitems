@@ -9,6 +9,11 @@
     <Import_RootNamespace>Efi</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)BitField.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Bits16.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Bits32.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Bits64.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Bits8.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CapsuleUnion.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CAPSULE_FLAGS.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EFI_ALLOCATE_TYPE.cs" />

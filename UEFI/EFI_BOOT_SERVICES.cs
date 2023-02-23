@@ -272,13 +272,13 @@ namespace Efi
         {
             return _LocateHandleBuffer(searchType, guid, a, b, handle);
         }// EFI 1.1+
-        public EFI_STATUS LocateProtocol(Guid* guid, nint protocol, void** handle)
+        public EFI_STATUS LocateProtocol(Guid* protocol, nint registration, void** @interface)
         {
-            return _LocateProtocol(guid, (void*)protocol, handle);
+            return _LocateProtocol(protocol, (void*)registration, @interface);
         }// EFI 1.1+
-        public EFI_STATUS LocateProtocol(Guid* guid, void* protocol, void** handle)
+        public EFI_STATUS LocateProtocol(Guid* protocol, void* registration, void** @interface)
         {
-            return _LocateProtocol(guid, protocol, handle);
+            return _LocateProtocol(protocol, registration, @interface);
         }// EFI 1.1+
         public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg)
         {

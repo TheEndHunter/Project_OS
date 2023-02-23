@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 
 namespace Efi
@@ -27,37 +28,34 @@ namespace Efi
 
         public unsafe EFI_STATUS OutputString(string msg)
         {
-            if (msg.Length < 1) return EFI_STATUS.SUCCESS;
-            fixed (EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL* s = &this)
+            if (msg == null || msg.Length < 1) return EFI_STATUS.ABORTED;
+            fixed (char* str = msg)
             {
-                fixed (char* c = msg)
-                {
-                    return _OutputString(s, c);
-                }
+                return OutputString(str);
             }
         }
+
         public unsafe EFI_STATUS OutputString(char* msg)
         {
-            if (msg != null) return EFI_STATUS.SUCCESS;
+            if (msg == null) return EFI_STATUS.ABORTED;
             fixed (EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL* s = &this)
             {
                 return _OutputString(s, msg);
             }
         }
+
         public unsafe EFI_STATUS TestString(string msg)
         {
-            if (msg.Length < 1) return EFI_STATUS.SUCCESS;
-            fixed (EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL* s = &this)
+            if (msg == null || msg.Length < 1) return EFI_STATUS.ABORTED;
+            fixed (char* str = msg)
             {
-                fixed (char* c = msg)
-                {
-                    return _TestString(s, c);
-                }
+                return TestString(str);
             }
         }
+
         public unsafe EFI_STATUS TestString(char* msg)
         {
-            if (msg != null) return EFI_STATUS.SUCCESS;
+            if (msg == null) return EFI_STATUS.ABORTED;
             fixed (EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL* s = &this)
             {
                 return _TestString(s, msg);
