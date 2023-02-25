@@ -1,10 +1,8 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace Efi
-{
+namespace Efi {
     [StructLayout(LayoutKind.Explicit, CharSet = CharSet.Unicode)]
-    public readonly unsafe struct EFI_UNINSTALL_MULTIPLE_PROTOCOL
-    {
+    public readonly unsafe struct EFI_UNINSTALL_MULTIPLE_PROTOCOL {
         [FieldOffset(0)]
         private readonly unsafe delegate* unmanaged<EFI_HANDLE*, EFI_STATUS> _1; // EFI 1.1+
         [FieldOffset(0)]

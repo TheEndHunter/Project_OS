@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Efi
-{
+namespace Efi {
     [StructLayout(LayoutKind.Sequential, Size = 640, Pack = 1)]
-    public unsafe struct EFI_SIGNATURE_LIST
-    {
+    public unsafe struct EFI_SIGNATURE_LIST {
         public Guid SignatureType;
         public uint SignatureListSize;
         public uint SignatureHeaderSize;

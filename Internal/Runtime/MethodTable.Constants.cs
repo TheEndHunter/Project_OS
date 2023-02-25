@@ -3,14 +3,12 @@
 
 using System;
 
-namespace Internal.Runtime
-{
+namespace Internal.Runtime {
     /// <summary>
     /// Represents the flags stored in the <c>_usFlags</c> field of a <c>System.Runtime.MethodTable</c>.
     /// </summary>
     [Flags]
-    internal enum EETypeFlags : uint
-    {
+    internal enum EETypeFlags : uint {
         /// <summary>
         /// There are four kinds of EETypes, defined in <c>Kinds</c>.
         /// </summary>
@@ -84,15 +82,13 @@ namespace Internal.Runtime
     /// when <c>_usComponentSize</c> does not represent ComponentSize. (i.e. when the type is not an array, string or typedef)
     /// </summary>
     [Flags]
-    internal enum EETypeFlagsEx : ushort
-    {
+    internal enum EETypeFlagsEx : ushort {
         HasEagerFinalizerFlag = 0x0001,
         HasCriticalFinalizerFlag = 0x0002,
         IsTrackedReferenceWithFinalizerFlag = 0x0004,
     }
 
-    internal enum EETypeKind : uint
-    {
+    internal enum EETypeKind : uint {
         /// <summary>
         /// Represents a standard ECMA type
         /// </summary>
@@ -119,8 +115,7 @@ namespace Internal.Runtime
     /// be associated with the MethodTable to represent them.
     /// </summary>
     [Flags]
-    internal enum EETypeRareFlags : int
-    {
+    internal enum EETypeRareFlags : int {
         /// <summary>
         /// This type requires 8-byte alignment for its fields on certain platforms (only ARM currently).
         /// </summary>
@@ -181,8 +176,7 @@ namespace Internal.Runtime
         IsByRefLikeFlag = 0x00008000,
     }
 
-    internal enum EETypeField
-    {
+    internal enum EETypeField {
         ETF_InterfaceMap,
         ETF_TypeManagerIndirection,
         ETF_WritableData,
@@ -200,8 +194,7 @@ namespace Internal.Runtime
     // Subset of the managed TypeFlags enum understood by Redhawk.
     // This should match the values in the TypeFlags enum except for the special
     // entry that marks System.Array specifically.
-    internal enum EETypeElementType
-    {
+    internal enum EETypeElementType {
         // Primitive
         Unknown = 0x00,
         Void = 0x01,
@@ -236,8 +229,7 @@ namespace Internal.Runtime
         Pointer = 0x1A,
     }
 
-    internal enum EETypeOptionalFieldTag : byte
-    {
+    internal enum EETypeOptionalFieldTag : byte {
         /// <summary>
         /// Extra <c>MethodTable</c> flags not commonly used such as HasClassConstructor
         /// </summary>
@@ -263,16 +255,14 @@ namespace Internal.Runtime
     }
 
     // Keep this synchronized with GenericVarianceType in rhbinder.h.
-    internal enum GenericVariance : byte
-    {
+    internal enum GenericVariance : byte {
         NonVariant = 0,
         Covariant = 1,
         Contravariant = 2,
         ArrayCovariant = 0x20,
     }
 
-    internal static class ParameterizedTypeShapeConstants
-    {
+    internal static class ParameterizedTypeShapeConstants {
         // NOTE: Parameterized type kind is stored in the BaseSize field of the MethodTable.
         // Array types use their actual base size. Pointer and ByRef types are never boxed,
         // so we can reuse the MethodTable BaseSize field to indicate the kind.
@@ -282,13 +272,11 @@ namespace Internal.Runtime
         public const int ByRef = 1;
     }
 
-    internal static class StringComponentSize
-    {
+    internal static class StringComponentSize {
         public const int Value = sizeof(char);
     }
 
-    internal static class WritableData
-    {
+    internal static class WritableData {
         public static int GetSize(int pointerSize) => pointerSize;
         public static int GetAlignment(int pointerSize) => pointerSize;
     }

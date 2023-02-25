@@ -1,4 +1,3 @@
-﻿namespace System
-{
+﻿namespace System {
     public struct Byte { }
 }

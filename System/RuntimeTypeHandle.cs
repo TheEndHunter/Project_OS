@@ -8,11 +8,10 @@ using System.Runtime;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace System
-{
+namespace System {
+
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct RuntimeTypeHandle
-    {
+    public unsafe struct RuntimeTypeHandle {
         private IntPtr _value;
         //
         // Caution: There can be and are multiple MethodTable for the "same" type (e.g. int[]). That means
@@ -20,36 +19,28 @@ namespace System
         //
 
         internal RuntimeTypeHandle(EETypePtr pEEType)
-            : this(pEEType.RawValue)
-        {
+            : this(pEEType.RawValue) {
         }
 
-        private RuntimeTypeHandle(IntPtr value)
-        {
-            unsafe
-            {
+        private RuntimeTypeHandle(IntPtr value) {
+            unsafe {
                 _value = value;
             }
         }
         [Intrinsic]
-        internal static unsafe IntPtr GetValueInternal(RuntimeTypeHandle handle)
-        {
+        internal static unsafe IntPtr GetValueInternal(RuntimeTypeHandle handle) {
             return (IntPtr)handle.ToEETypePtr().ToPointer();
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool Equals(RuntimeTypeHandle handle)
-        {
-            if (_value == handle._value)
-            {
+        public bool Equals(RuntimeTypeHandle handle) {
+            if (_value == handle._value) {
                 return true;
             }
-            else if (this.IsNull || handle.IsNull)
-            {
+            else if (this.IsNull || handle.IsNull) {
                 return false;
             }
-            else
-            {
+            else {
                 return RuntimeImports.AreTypesEquivalent(this.ToEETypePtr(), handle.ToEETypePtr());
             }
         }
@@ -58,29 +49,25 @@ namespace System
 
         public static IntPtr ToIntPtr(RuntimeTypeHandle value) => value.Value;
 
-        public static bool operator ==(object? left, RuntimeTypeHandle right)
-        {
+        public static bool operator ==(object? left, RuntimeTypeHandle right) {
             if (left is RuntimeTypeHandle)
                 return right.Equals((RuntimeTypeHandle)left);
             return false;
         }
 
-        public static bool operator ==(RuntimeTypeHandle left, object? right)
-        {
+        public static bool operator ==(RuntimeTypeHandle left, object? right) {
             if (right is RuntimeTypeHandle)
                 return left.Equals((RuntimeTypeHandle)right);
             return false;
         }
 
-        public static bool operator !=(object? left, RuntimeTypeHandle right)
-        {
+        public static bool operator !=(object? left, RuntimeTypeHandle right) {
             if (left is RuntimeTypeHandle)
                 return !right.Equals((RuntimeTypeHandle)left);
             return true;
         }
 
-        public static bool operator !=(RuntimeTypeHandle left, object? right)
-        {
+        public static bool operator !=(RuntimeTypeHandle left, object? right) {
             if (right is RuntimeTypeHandle)
                 return !left.Equals((RuntimeTypeHandle)right);
             return true;
@@ -90,23 +77,18 @@ namespace System
 
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        internal EETypePtr ToEETypePtr()
-        {
+        internal EETypePtr ToEETypePtr() {
             return new EETypePtr(_value);
         }
 
-        internal bool IsNull
-        {
-            get
-            {
+        internal bool IsNull {
+            get {
                 return _value == new IntPtr(0);
             }
         }
 
-        internal IntPtr RawValue
-        {
-            get
-            {
+        internal IntPtr RawValue {
+            get {
                 return _value;
             }
         }

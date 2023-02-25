@@ -1,39 +1,29 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace Efi
-{
+namespace Efi {
     [StructLayout(LayoutKind.Sequential)]
-    public sealed class Bits32 : BitField<uint>
-    {
-        public Bits32() : base(0)
-        {
+    public sealed class Bits32 : BitField<uint> {
+        public Bits32() : base(0) {
         }
 
-        public Bits32(uint value) : base(value)
-        {
+        public Bits32(uint value) : base(value) {
         }
 
         protected override int BitLength => 16;
 
-        protected override bool GetBit(int pos)
-        {
-            if (pos > BitLength)
-            {
+        protected override bool GetBit(int pos) {
+            if (pos > BitLength) {
                 return ((_field & masks[pos]) >> pos) > 0;
             }
             return false;
         }
 
-        protected override void SetBit(int pos, bool val)
-        {
-            if (pos > BitLength)
-            {
-                if (val)
-                {
+        protected override void SetBit(int pos, bool val) {
+            if (pos > BitLength) {
+                if (val) {
                     _field |= masks[pos];
                 }
-                else
-                {
+                else {
                     _field &= ~masks[pos];
                 }
             }

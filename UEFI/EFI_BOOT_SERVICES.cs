@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Efi
-{
+namespace Efi {
     public unsafe delegate EFI_STATUS EFI_EVENT_NOTIFY(EFI_EVENT @event, void* context);
 
     public unsafe delegate EFI_STATUS EFI_ENTRY_POINT(EFI_HANDLE imageHandle, EFI_SYSTEM_TABLE* systemTable);
 
     [StructLayout(LayoutKind.Sequential)]
-    public readonly unsafe struct EFI_BOOT_SERVICES
-    {
+    public readonly unsafe struct EFI_BOOT_SERVICES {
         public readonly EFI_TABLE_HEADER Hdr;
         //
         // Task Priority Services
@@ -92,143 +90,114 @@ namespace Efi
         //
         // Task Priority Services
         //
-        public EFI_STATUS RaiseTPL(EFI_TPL tpl)
-        {
+        public EFI_STATUS RaiseTPL(EFI_TPL tpl) {
             return _RaiseTPL(tpl);
         } // EFI 1.0+
-        public EFI_STATUS RestoreTPL(EFI_TPL tpl)
-        {
+        public EFI_STATUS RestoreTPL(EFI_TPL tpl) {
             return _RestoreTPL(tpl);
         }
         //
         // Memory Services
         //
-        public EFI_STATUS AllocatePages(EFI_ALLOCATE_TYPE allocType, EFI_MEMORY_TYPE memoryType, UIntn count, EFI_PHYSICAL_ADDRESS addr)
-        {
+        public EFI_STATUS AllocatePages(EFI_ALLOCATE_TYPE allocType, EFI_MEMORY_TYPE memoryType, UIntn count, EFI_PHYSICAL_ADDRESS addr) {
             return _AllocatePages(allocType, memoryType, count, addr);
         }// EFI 1.0+
-        public EFI_STATUS FreePages(EFI_PHYSICAL_ADDRESS addr, UIntn count)
-        {
+        public EFI_STATUS FreePages(EFI_PHYSICAL_ADDRESS addr, UIntn count) {
             return _FreePages(addr, count);
         }
 
-        public EFI_STATUS GetMemoryMap(UIntn* a, EFI_MEMORY_DESCRIPTOR descriptor, UIntn* b, UIntn* c, uint* d)
-        {
+        public EFI_STATUS GetMemoryMap(UIntn* a, EFI_MEMORY_DESCRIPTOR descriptor, UIntn* b, UIntn* c, uint* d) {
             return _GetMemoryMap(a, descriptor, b, c, d);
         }
 
-        public EFI_STATUS AllocatePool(EFI_MEMORY_TYPE memoryType, UIntn size, void** location)
-        {
+        public EFI_STATUS AllocatePool(EFI_MEMORY_TYPE memoryType, UIntn size, void** location) {
             return _AllocatePool(memoryType, size, location);
         }
-        public EFI_STATUS FreePool(void* addr)
-        {
+        public EFI_STATUS FreePool(void* addr) {
             return _FreePool(addr);
         }
 
         //
         // Event & Timer Services
         //
-        public EFI_STATUS CreateEvent(uint a, EFI_TPL tpl, EFI_EVENT_NOTIFY func, void* b, EFI_EVENT* e)
-        {
+        public EFI_STATUS CreateEvent(uint a, EFI_TPL tpl, EFI_EVENT_NOTIFY func, void* b, EFI_EVENT* e) {
             return _CreateEvent(a, tpl, func, b, e);
         } // EFI 1.0+
 
-        public EFI_STATUS SetTimer(EFI_EVENT e, EFI_TIMER_DELAY TimerDelay, ulong time)
-        {
+        public EFI_STATUS SetTimer(EFI_EVENT e, EFI_TIMER_DELAY TimerDelay, ulong time) {
             return _SetTimer(e, TimerDelay, time);
         }
 
-        public EFI_STATUS WaitForEvent(UIntn a, EFI_EVENT* e, UIntn* b)
-        {
+        public EFI_STATUS WaitForEvent(UIntn a, EFI_EVENT* e, UIntn* b) {
             return _WaitForEvent(a, e, b);
         }
 
-        public EFI_STATUS SignalEvent(EFI_EVENT e)
-        {
+        public EFI_STATUS SignalEvent(EFI_EVENT e) {
             return _SignalEvent(e);
         }
-        public EFI_STATUS CloseEvent(EFI_EVENT* e)
-        {
+        public EFI_STATUS CloseEvent(EFI_EVENT* e) {
             return _CloseEvent(e);
         }
-        public EFI_STATUS CheckEvent(EFI_EVENT e)
-        {
+        public EFI_STATUS CheckEvent(EFI_EVENT e) {
             return _CheckEvent(e);
         }
         //
         // Protocol Handler Services
         //
-        public EFI_STATUS InstallProtocolInterface(EFI_HANDLE* handle, Guid guid, EFI_INTERFACE_TYPE interfaceType, void* interfacePointer)
-        {
+        public EFI_STATUS InstallProtocolInterface(EFI_HANDLE* handle, Guid guid, EFI_INTERFACE_TYPE interfaceType, void* interfacePointer) {
             return _InstallProtocolInterface(handle, guid, interfaceType, interfacePointer);
         }
-        public EFI_STATUS ReinstallProtocolInterface(EFI_HANDLE* handle, Guid guid, void* oldinterface, void* newinterface)
-        {
+        public EFI_STATUS ReinstallProtocolInterface(EFI_HANDLE* handle, Guid guid, void* oldinterface, void* newinterface) {
             return _ReinstallProtocolInterface(handle, guid, oldinterface, newinterface);
         }
-        public EFI_STATUS UninstallProtocolInterface(EFI_HANDLE* handle, Guid guid, void* interfacePointer)
-        {
+        public EFI_STATUS UninstallProtocolInterface(EFI_HANDLE* handle, Guid guid, void* interfacePointer) {
             return _UninstallProtocolInterface(handle, guid, interfacePointer);
         }
-        public EFI_STATUS HandleProtocol(EFI_HANDLE handle, Guid* guid, void** protocolhandler)
-        {
+        public EFI_STATUS HandleProtocol(EFI_HANDLE handle, Guid* guid, void** protocolhandler) {
             return _HandleProtocol(handle, guid, protocolhandler);
         }
-        public EFI_STATUS RegisterProtocolNotify(Guid* guid, EFI_EVENT e, void** handler)
-        {
+        public EFI_STATUS RegisterProtocolNotify(Guid* guid, EFI_EVENT e, void** handler) {
             return _RegisterProtocolNotify(guid, e, handler);
         }
-        public EFI_STATUS LocateHandle(EFI_LOCATE_SEARCH_TYPE searchType, Guid* guid, void* a, UIntn* b, EFI_HANDLE* handle)
-        {
+        public EFI_STATUS LocateHandle(EFI_LOCATE_SEARCH_TYPE searchType, Guid* guid, void* a, UIntn* b, EFI_HANDLE* handle) {
             return _LocateHandle(searchType, guid, a, b, handle);
         }
-        public EFI_STATUS LocateDevicePath(Guid* guid, EFI_DEVICE_PATH_PROTOCOL** devicePathProtocol, EFI_HANDLE* handle)
-        {
+        public EFI_STATUS LocateDevicePath(Guid* guid, EFI_DEVICE_PATH_PROTOCOL** devicePathProtocol, EFI_HANDLE* handle) {
             return _LocateDevicePath(guid, devicePathProtocol, handle);
         }
-        public EFI_STATUS InstallConfigurationTable(Guid* guid, void* table)
-        {
+        public EFI_STATUS InstallConfigurationTable(Guid* guid, void* table) {
             return _InstallConfigurationTable(guid, table);
         }
         //
         // Image Services
         //
-        public EFI_STATUS LoadImage(bool a, EFI_HANDLE handle, EFI_DEVICE_PATH_PROTOCOL* devicePath, void* b, UIntn c, EFI_HANDLE* d)
-        {
+        public EFI_STATUS LoadImage(bool a, EFI_HANDLE handle, EFI_DEVICE_PATH_PROTOCOL* devicePath, void* b, UIntn c, EFI_HANDLE* d) {
             return _LoadImage(a, handle, devicePath, b, c, d);
         }// EFI 1.0+
-        public EFI_STATUS StartImage(EFI_HANDLE handle, UIntn* a, char** b)
-        {
+        public EFI_STATUS StartImage(EFI_HANDLE handle, UIntn* a, char** b) {
             return _StartImage(handle, a, b);
         }// EFI 1.0+
-        public EFI_STATUS Exit(EFI_HANDLE handle, EFI_STATUS exitCode, UIntn a, char* b)
-        {
+        public EFI_STATUS Exit(EFI_HANDLE handle, EFI_STATUS exitCode, UIntn a, char* b) {
             return _Exit(handle, exitCode, a, b);
         }
         // EFI 1.0+
-        public EFI_STATUS UnloadImage(EFI_HANDLE handle)
-        {
+        public EFI_STATUS UnloadImage(EFI_HANDLE handle) {
             return _UnloadImage(handle);
         } // EFI 1.0+
-        public EFI_STATUS ExitBootServices(EFI_HANDLE handle, UIntn a)
-        {
+        public EFI_STATUS ExitBootServices(EFI_HANDLE handle, UIntn a) {
             return _ExitBootServices(handle, a);
         }// EFI 1.0+
 
         //
         // Miscellaneous Services
         //
-        public EFI_STATUS GetNextMonotonicCount(ulong* count)
-        {
+        public EFI_STATUS GetNextMonotonicCount(ulong* count) {
             return _GetNextMonotonicCount(count);
         }// EFI 1.0+
-        public EFI_STATUS Stall(UIntn count)
-        {
+        public EFI_STATUS Stall(UIntn count) {
             return _Stall(count);
         }// EFI 1.0+
-        public EFI_STATUS SetWatchdogTimer(UIntn a, ulong b, UIntn c, char* d)
-        {
+        public EFI_STATUS SetWatchdogTimer(UIntn a, ulong b, UIntn c, char* d) {
             return _SetWatchdogTimer(a, b, c, d);
         }// EFI 1.0+
 
@@ -247,189 +216,146 @@ namespace Efi
         //
         // Open and Close Protocol Services
         //
-        public EFI_STATUS OpenProtocol(EFI_HANDLE handle, Guid* guid, void** protocol, EFI_HANDLE a, EFI_HANDLE b, EFI_OPEN_PROTOCOL c)
-        {
+        public EFI_STATUS OpenProtocol(EFI_HANDLE handle, Guid* guid, void** protocol, EFI_HANDLE a, EFI_HANDLE b, EFI_OPEN_PROTOCOL c) {
             return _OpenProtocol(handle, guid, protocol, a, b, c);
         }// EFI 1.1+
-        public EFI_STATUS CloseProtocol(EFI_HANDLE handle, Guid* guid, EFI_HANDLE a, EFI_HANDLE b)
-        {
+        public EFI_STATUS CloseProtocol(EFI_HANDLE handle, Guid* guid, EFI_HANDLE a, EFI_HANDLE b) {
             return _CloseProtocol(handle, guid, a, b);
         }// EFI 1.1+
-        public EFI_STATUS OpenProtocolInformation(EFI_HANDLE handle, Guid* guid, EFI_OPEN_PROTOCOL_INFORMATION_ENTRY** entry, UIntn* a)
-        {
+        public EFI_STATUS OpenProtocolInformation(EFI_HANDLE handle, Guid* guid, EFI_OPEN_PROTOCOL_INFORMATION_ENTRY** entry, UIntn* a) {
             return _OpenProtocolInformation(handle, guid, entry, a);
         }// EFI 1.1+
 
         //
         // Library Services
         //
-        public EFI_STATUS ProtocolsPerHandle(EFI_HANDLE handle, Guid*** guid, UIntn* i)
-        {
+        public EFI_STATUS ProtocolsPerHandle(EFI_HANDLE handle, Guid*** guid, UIntn* i) {
             return _ProtocolsPerHandle(handle, guid, i);
         }// EFI 1.1+
 
-        public EFI_STATUS LocateHandleBuffer(EFI_LOCATE_SEARCH_TYPE searchType, Guid* guid, void* a, UIntn* b, EFI_HANDLE** handle)
-        {
+        public EFI_STATUS LocateHandleBuffer(EFI_LOCATE_SEARCH_TYPE searchType, Guid* guid, void* a, UIntn* b, EFI_HANDLE** handle) {
             return _LocateHandleBuffer(searchType, guid, a, b, handle);
         }// EFI 1.1+
-        public EFI_STATUS LocateProtocol(Guid* protocol, nint registration, void** @interface)
-        {
+        public EFI_STATUS LocateProtocol(Guid* protocol, nint registration, void** @interface) {
             return _LocateProtocol(protocol, (void*)registration, @interface);
         }// EFI 1.1+
-        public EFI_STATUS LocateProtocol(Guid* protocol, void* registration, void** @interface)
-        {
+        public EFI_STATUS LocateProtocol(Guid* protocol, void* registration, void** @interface) {
             return _LocateProtocol(protocol, registration, @interface);
         }// EFI 1.1+
-        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg)
-        {
+        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg) {
             return _InstallMultipleProtocolInterfaces.Invoke(arg);
         }// EFI 1.1+
-        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1)
-        {
+        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1) {
             return _InstallMultipleProtocolInterfaces.Invoke(arg, arg1);
         }// EFI 1.1+
-        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2)
-        {
+        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2) {
             return _InstallMultipleProtocolInterfaces.Invoke(arg, arg1, arg2);
         }// EFI 1.1+
-        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3)
-        {
+        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3) {
             return _InstallMultipleProtocolInterfaces.Invoke(arg, arg1, arg2, arg3);
         }// EFI 1.1+
-        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4)
-        {
+        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4) {
             return _InstallMultipleProtocolInterfaces.Invoke(arg, arg1, arg2, arg3, arg4);
         }// EFI 1.1+
-        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5)
-        {
+        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5) {
             return _InstallMultipleProtocolInterfaces.Invoke(arg, arg1, arg2, arg3, arg4, arg5);
         }// EFI 1.1+
-        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6)
-        {
+        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6) {
             return _InstallMultipleProtocolInterfaces.Invoke(arg, arg1, arg2, arg3, arg4, arg5, arg6);
         }// EFI 1.1+
-        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7)
-        {
+        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7) {
             return _InstallMultipleProtocolInterfaces.Invoke(arg, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
         }// EFI 1.1+
-        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8)
-        {
+        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8) {
             return _InstallMultipleProtocolInterfaces.Invoke(arg, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
         }// EFI 1.1+
-        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8, EFI_HANDLE* arg9)
-        {
+        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8, EFI_HANDLE* arg9) {
             return _InstallMultipleProtocolInterfaces.Invoke(arg, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
         }// EFI 1.1+
-        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8, EFI_HANDLE* arg9, EFI_HANDLE* arg10)
-        {
+        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8, EFI_HANDLE* arg9, EFI_HANDLE* arg10) {
             return _InstallMultipleProtocolInterfaces.Invoke(arg, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10);
         }// EFI 1.1+
-        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8, EFI_HANDLE* arg9, EFI_HANDLE* arg10, EFI_HANDLE* arg11)
-        {
+        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8, EFI_HANDLE* arg9, EFI_HANDLE* arg10, EFI_HANDLE* arg11) {
             return _InstallMultipleProtocolInterfaces.Invoke(arg, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11);
         }// EFI 1.1+
-        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8, EFI_HANDLE* arg9, EFI_HANDLE* arg10, EFI_HANDLE* arg11, EFI_HANDLE* arg12)
-        {
+        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8, EFI_HANDLE* arg9, EFI_HANDLE* arg10, EFI_HANDLE* arg11, EFI_HANDLE* arg12) {
             return _InstallMultipleProtocolInterfaces.Invoke(arg, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12);
         }// EFI 1.1+
-        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8, EFI_HANDLE* arg9, EFI_HANDLE* arg10, EFI_HANDLE* arg11, EFI_HANDLE* arg12, EFI_HANDLE* arg13)
-        {
+        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8, EFI_HANDLE* arg9, EFI_HANDLE* arg10, EFI_HANDLE* arg11, EFI_HANDLE* arg12, EFI_HANDLE* arg13) {
             return _InstallMultipleProtocolInterfaces.Invoke(arg, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13);
         }// EFI 1.1+
-        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8, EFI_HANDLE* arg9, EFI_HANDLE* arg10, EFI_HANDLE* arg11, EFI_HANDLE* arg12, EFI_HANDLE* arg13, EFI_HANDLE* arg14)
-        {
+        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8, EFI_HANDLE* arg9, EFI_HANDLE* arg10, EFI_HANDLE* arg11, EFI_HANDLE* arg12, EFI_HANDLE* arg13, EFI_HANDLE* arg14) {
             return _InstallMultipleProtocolInterfaces.Invoke(arg, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14);
         }// EFI 1.1+
-        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8, EFI_HANDLE* arg9, EFI_HANDLE* arg10, EFI_HANDLE* arg11, EFI_HANDLE* arg12, EFI_HANDLE* arg13, EFI_HANDLE* arg14, EFI_HANDLE* arg15)
-        {
+        public EFI_STATUS InstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8, EFI_HANDLE* arg9, EFI_HANDLE* arg10, EFI_HANDLE* arg11, EFI_HANDLE* arg12, EFI_HANDLE* arg13, EFI_HANDLE* arg14, EFI_HANDLE* arg15) {
             return _InstallMultipleProtocolInterfaces.Invoke(arg, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15);
         }// EFI 1.1+
-        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg)
-        {
+        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg) {
             return _UninstallMultipleProtocolInterfaces.Invoke(arg);
         }// EFI 1.1+
-        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1)
-        {
+        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1) {
             return _UninstallMultipleProtocolInterfaces.Invoke(arg, arg1);
         }// EFI 1.1+
-        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2)
-        {
+        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2) {
             return _UninstallMultipleProtocolInterfaces.Invoke(arg, arg1, arg2);
         }// EFI 1.1+
-        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3)
-        {
+        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3) {
             return _UninstallMultipleProtocolInterfaces.Invoke(arg, arg1, arg2, arg3);
         }// EFI 1.1+
-        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4)
-        {
+        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4) {
             return _UninstallMultipleProtocolInterfaces.Invoke(arg, arg1, arg2, arg3, arg4);
         }// EFI 1.1+
-        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5)
-        {
+        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5) {
             return _UninstallMultipleProtocolInterfaces.Invoke(arg, arg1, arg2, arg3, arg4, arg5);
         }// EFI 1.1+
-        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6)
-        {
+        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6) {
             return _UninstallMultipleProtocolInterfaces.Invoke(arg, arg1, arg2, arg3, arg4, arg5, arg6);
         }// EFI 1.1+
-        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7)
-        {
+        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7) {
             return _UninstallMultipleProtocolInterfaces.Invoke(arg, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
         }// EFI 1.1+
-        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8)
-        {
+        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8) {
             return _UninstallMultipleProtocolInterfaces.Invoke(arg, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
         }// EFI 1.1+
-        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8, EFI_HANDLE* arg9)
-        {
+        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8, EFI_HANDLE* arg9) {
             return _UninstallMultipleProtocolInterfaces.Invoke(arg, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
         }// EFI 1.1+
-        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8, EFI_HANDLE* arg9, EFI_HANDLE* arg10)
-        {
+        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8, EFI_HANDLE* arg9, EFI_HANDLE* arg10) {
             return _UninstallMultipleProtocolInterfaces.Invoke(arg, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10);
         }// EFI 1.1+
-        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8, EFI_HANDLE* arg9, EFI_HANDLE* arg10, EFI_HANDLE* arg11)
-        {
+        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8, EFI_HANDLE* arg9, EFI_HANDLE* arg10, EFI_HANDLE* arg11) {
             return _UninstallMultipleProtocolInterfaces.Invoke(arg, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11);
         }// EFI 1.1+
-        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8, EFI_HANDLE* arg9, EFI_HANDLE* arg10, EFI_HANDLE* arg11, EFI_HANDLE* arg12)
-        {
+        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8, EFI_HANDLE* arg9, EFI_HANDLE* arg10, EFI_HANDLE* arg11, EFI_HANDLE* arg12) {
             return _UninstallMultipleProtocolInterfaces.Invoke(arg, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12);
         }// EFI 1.1+
-        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8, EFI_HANDLE* arg9, EFI_HANDLE* arg10, EFI_HANDLE* arg11, EFI_HANDLE* arg12, EFI_HANDLE* arg13)
-        {
+        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8, EFI_HANDLE* arg9, EFI_HANDLE* arg10, EFI_HANDLE* arg11, EFI_HANDLE* arg12, EFI_HANDLE* arg13) {
             return _UninstallMultipleProtocolInterfaces.Invoke(arg, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13);
         }// EFI 1.1+
-        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8, EFI_HANDLE* arg9, EFI_HANDLE* arg10, EFI_HANDLE* arg11, EFI_HANDLE* arg12, EFI_HANDLE* arg13, EFI_HANDLE* arg14)
-        {
+        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8, EFI_HANDLE* arg9, EFI_HANDLE* arg10, EFI_HANDLE* arg11, EFI_HANDLE* arg12, EFI_HANDLE* arg13, EFI_HANDLE* arg14) {
             return _UninstallMultipleProtocolInterfaces.Invoke(arg, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14);
         }// EFI 1.1+
-        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8, EFI_HANDLE* arg9, EFI_HANDLE* arg10, EFI_HANDLE* arg11, EFI_HANDLE* arg12, EFI_HANDLE* arg13, EFI_HANDLE* arg14, EFI_HANDLE* arg15)
-        {
+        public EFI_STATUS UninstallMultipleProtocolInterfaces(EFI_HANDLE* arg, EFI_HANDLE* arg1, EFI_HANDLE* arg2, EFI_HANDLE* arg3, EFI_HANDLE* arg4, EFI_HANDLE* arg5, EFI_HANDLE* arg6, EFI_HANDLE* arg7, EFI_HANDLE* arg8, EFI_HANDLE* arg9, EFI_HANDLE* arg10, EFI_HANDLE* arg11, EFI_HANDLE* arg12, EFI_HANDLE* arg13, EFI_HANDLE* arg14, EFI_HANDLE* arg15) {
             return _UninstallMultipleProtocolInterfaces.Invoke(arg, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15);
         }// EFI 1.1+
 
         //
         // 32-bit CRC Services
         //
-        public EFI_STATUS CalculateCrc32(void* a, UIntn b, uint* c)
-        {
+        public EFI_STATUS CalculateCrc32(void* a, UIntn b, uint* c) {
             return _CalculateCrc32(a, b, c);
         }
 
         //
         // Miscellaneous Services
         //
-        public EFI_STATUS CopyMem(void* src, void* dest, UIntn size)
-        {
+        public EFI_STATUS CopyMem(void* src, void* dest, UIntn size) {
             return _CopyMem(src, dest, size);
         }
-        public EFI_STATUS SetMem(void* src, UIntn size, byte value)
-        {
+        public EFI_STATUS SetMem(void* src, UIntn size, byte value) {
             return _SetMem(src, size, value);
         }
-        public EFI_STATUS CreateEventEx(uint a, EFI_TPL tpl, EFI_EVENT_NOTIFY func, void* b, Guid* guid, EFI_EVENT* handle)
-        {
+        public EFI_STATUS CreateEventEx(uint a, EFI_TPL tpl, EFI_EVENT_NOTIFY func, void* b, Guid* guid, EFI_EVENT* handle) {
             return _CreateEventEx(a, tpl, func, b, guid, handle);
         }
     }

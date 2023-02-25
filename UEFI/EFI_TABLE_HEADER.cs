@@ -1,10 +1,8 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace Efi
-{
+namespace Efi {
     [StructLayout(LayoutKind.Sequential)]
-    public readonly struct EFI_TABLE_HEADER
-    {
+    public readonly struct EFI_TABLE_HEADER {
         public readonly ulong Signature;
         public readonly uint Revision;
         public readonly uint HeaderSize;

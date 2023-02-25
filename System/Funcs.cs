@@ -1,5 +1,4 @@
-﻿namespace System
-{
+﻿namespace System {
     public delegate TResult Func<out TResult>();
     public delegate TResult Func<in T1, out TResult>(T1 arg);
     public delegate TResult Func<in T1, in T2, out TResult>(T1 arg, T2 arg1);

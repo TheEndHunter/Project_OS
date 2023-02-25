@@ -1,10 +1,8 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace Efi
-{
+namespace Efi {
     [StructLayout(LayoutKind.Sequential)]
-    public struct EFI_VARIABLE_AUTHENTICATION_3
-    {
+    public struct EFI_VARIABLE_AUTHENTICATION_3 {
         public byte Version;
         public byte Type;
         public uint MetadataSize;

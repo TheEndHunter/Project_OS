@@ -1,7 +1,7 @@
+
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 
-#pragma warning disable IDE0060 // implementations provided as intrinsics
 using System;
 using System.Diagnostics.CodeAnalysis;
 
@@ -13,13 +13,11 @@ using System.Diagnostics.CodeAnalysis;
 
 #pragma warning disable 8500 // address / sizeof of managed types
 
-namespace System.Runtime.CompilerServices
-{
+namespace System.Runtime.CompilerServices {
     /// <summary>
     /// Contains generic, low-level functionality for manipulating pointers.
     /// </summary>
-    public static unsafe partial class Unsafe
-    {
+    public static unsafe partial class Unsafe {
         /// <summary>
         /// Returns a pointer to the given by-ref parameter.
         /// </summary>
@@ -30,8 +28,7 @@ namespace System.Runtime.CompilerServices
 
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void* AsPointer<T>(ref T value)
-        {
+        public static void* AsPointer<T>(ref T value) {
             throw new PlatformNotSupportedException();
 
             // ldarg.0
@@ -48,8 +45,7 @@ namespace System.Runtime.CompilerServices
         // Mono:SizeOf
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static int SizeOf<T>()
-        {
+        public static int SizeOf<T>() {
             return sizeof(T);
         }
 
@@ -63,8 +59,7 @@ namespace System.Runtime.CompilerServices
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         [return: NotNullIfNotNull(nameof(o))]
-        public static T As<T>(object? o) where T : class?
-        {
+        public static T As<T>(object? o) where T : class? {
             throw new PlatformNotSupportedException();
 
             // ldarg.0
@@ -80,8 +75,7 @@ namespace System.Runtime.CompilerServices
         // Mono:As
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ref TTo As<TFrom, TTo>(ref TFrom source)
-        {
+        public static ref TTo As<TFrom, TTo>(ref TFrom source) {
             throw new PlatformNotSupportedException();
 
             // ldarg.0
@@ -97,13 +91,12 @@ namespace System.Runtime.CompilerServices
         // Mono:Add
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ref T Add<T>(ref T source, int elementOffset)
-        {
+        public static ref T Add<T>(ref T source, int elementOffset) {
 #if CORECLR
             typeof(T).ToString(); // Type token used by the actual method body
             throw new PlatformNotSupportedException();
 #else
-            return ref AddByteOffset(ref source, (IntPtr)(elementOffset * (nint)sizeof(T)));
+            return ref AddByteOffset(ref source, elementOffset * (nint)sizeof(T));
 #endif
             // ldarg .0
             // ldarg .1
@@ -123,13 +116,12 @@ namespace System.Runtime.CompilerServices
         // Mono:Add
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ref T Add<T>(ref T source, IntPtr elementOffset)
-        {
+        public static ref T Add<T>(ref T source, IntPtr elementOffset) {
 #if CORECLR
             typeof(T).ToString(); // Type token used by the actual method body
             throw new PlatformNotSupportedException();
 #else
-            return ref AddByteOffset(ref source, (IntPtr)((nint)elementOffset * sizeof(T)));
+            return ref AddByteOffset(ref source, elementOffset * sizeof(T));
 #endif
 
             // ldarg .0
@@ -150,8 +142,7 @@ namespace System.Runtime.CompilerServices
 
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void* Add<T>(void* source, int elementOffset)
-        {
+        public static void* Add<T>(void* source, int elementOffset) {
 #if CORECLR
             typeof(T).ToString(); // Type token used by the actual method body
             throw new PlatformNotSupportedException();
@@ -176,8 +167,7 @@ namespace System.Runtime.CompilerServices
 
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ref T Add<T>(ref T source, nuint elementOffset)
-        {
+        public static ref T Add<T>(ref T source, nuint elementOffset) {
 #if CORECLR
             typeof(T).ToString();
             throw new PlatformNotSupportedException();
@@ -203,8 +193,7 @@ namespace System.Runtime.CompilerServices
 
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ref T AddByteOffset<T>(ref T source, nuint byteOffset)
-        {
+        public static ref T AddByteOffset<T>(ref T source, nuint byteOffset) {
 #if CORECLR
             typeof(T).ToString();
             throw new PlatformNotSupportedException();
@@ -227,8 +216,7 @@ namespace System.Runtime.CompilerServices
         // Mono:AreSame
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool AreSame<T>([AllowNull] ref T left, [AllowNull] ref T right)
-        {
+        public static bool AreSame<T>([AllowNull] ref T left, [AllowNull] ref T right) {
             throw new PlatformNotSupportedException();
 
             // ldarg.0
@@ -245,8 +233,7 @@ namespace System.Runtime.CompilerServices
 
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Copy<T>(void* destination, ref T source)
-        {
+        public static void Copy<T>(void* destination, ref T source) {
             throw new PlatformNotSupportedException();
 
             // ldarg .0
@@ -264,8 +251,7 @@ namespace System.Runtime.CompilerServices
 
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Copy<T>(ref T destination, void* source)
-        {
+        public static void Copy<T>(ref T destination, void* source) {
             throw new PlatformNotSupportedException();
 
             // ldarg .0
@@ -283,8 +269,7 @@ namespace System.Runtime.CompilerServices
 
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void CopyBlock(void* destination, void* source, uint byteCount)
-        {
+        public static void CopyBlock(void* destination, void* source, uint byteCount) {
             throw new PlatformNotSupportedException();
 
             // ldarg .0
@@ -302,8 +287,7 @@ namespace System.Runtime.CompilerServices
 
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void CopyBlock(ref byte destination, ref byte source, uint byteCount)
-        {
+        public static void CopyBlock(ref byte destination, ref byte source, uint byteCount) {
             throw new PlatformNotSupportedException();
 
             // ldarg .0
@@ -321,8 +305,7 @@ namespace System.Runtime.CompilerServices
 
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void CopyBlockUnaligned(void* destination, void* source, uint byteCount)
-        {
+        public static void CopyBlockUnaligned(void* destination, void* source, uint byteCount) {
             throw new PlatformNotSupportedException();
 
             // ldarg .0
@@ -341,8 +324,7 @@ namespace System.Runtime.CompilerServices
 
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void CopyBlockUnaligned(ref byte destination, ref byte source, uint byteCount)
-        {
+        public static void CopyBlockUnaligned(ref byte destination, ref byte source, uint byteCount) {
             throw new PlatformNotSupportedException();
 
             // ldarg .0
@@ -366,8 +348,7 @@ namespace System.Runtime.CompilerServices
         // Mono:IsAddressGreaterThan
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsAddressGreaterThan<T>([AllowNull] ref T left, [AllowNull] ref T right)
-        {
+        public static bool IsAddressGreaterThan<T>([AllowNull] ref T left, [AllowNull] ref T right) {
             throw new PlatformNotSupportedException();
 
             // ldarg.0
@@ -389,8 +370,7 @@ namespace System.Runtime.CompilerServices
         // Mono:IsAddressLessThan
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsAddressLessThan<T>([AllowNull] ref T left, [AllowNull] ref T right)
-        {
+        public static bool IsAddressLessThan<T>([AllowNull] ref T left, [AllowNull] ref T right) {
             throw new PlatformNotSupportedException();
 
             // ldarg.0
@@ -407,8 +387,7 @@ namespace System.Runtime.CompilerServices
 
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void InitBlock(void* startAddress, byte value, uint byteCount)
-        {
+        public static void InitBlock(void* startAddress, byte value, uint byteCount) {
             throw new PlatformNotSupportedException();
 
             // ldarg .0
@@ -426,8 +405,7 @@ namespace System.Runtime.CompilerServices
 
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void InitBlock(ref byte startAddress, byte value, uint byteCount)
-        {
+        public static void InitBlock(ref byte startAddress, byte value, uint byteCount) {
             throw new PlatformNotSupportedException();
 
             // ldarg .0
@@ -446,8 +424,7 @@ namespace System.Runtime.CompilerServices
 
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void InitBlockUnaligned(void* startAddress, byte value, uint byteCount)
-        {
+        public static void InitBlockUnaligned(void* startAddress, byte value, uint byteCount) {
             throw new PlatformNotSupportedException();
 
             // ldarg .0
@@ -469,10 +446,8 @@ namespace System.Runtime.CompilerServices
 
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void InitBlockUnaligned(ref byte startAddress, byte value, uint byteCount)
-        {
-            for (uint i = 0; i < byteCount; i++)
-            {
+        public static void InitBlockUnaligned(ref byte startAddress, byte value, uint byteCount) {
+            for (uint i = 0; i < byteCount; i++) {
                 AddByteOffset(ref startAddress, i) = value;
             }
 
@@ -494,8 +469,7 @@ namespace System.Runtime.CompilerServices
 
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T ReadUnaligned<T>(void* source)
-        {
+        public static T ReadUnaligned<T>(void* source) {
 #if CORECLR
             typeof(T).ToString(); // Type token used by the actual method body
             throw new PlatformNotSupportedException();
@@ -518,8 +492,7 @@ namespace System.Runtime.CompilerServices
         // Mono:ReadUnaligned
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T ReadUnaligned<T>(ref byte source)
-        {
+        public static T ReadUnaligned<T>(ref byte source) {
 #if CORECLR
             typeof(T).ToString(); // Type token used by the actual method body
             throw new PlatformNotSupportedException();
@@ -543,8 +516,7 @@ namespace System.Runtime.CompilerServices
 
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void WriteUnaligned<T>(void* destination, T value)
-        {
+        public static void WriteUnaligned<T>(void* destination, T value) {
 #if CORECLR
             typeof(T).ToString(); // Type token used by the actual method body
             throw new PlatformNotSupportedException();
@@ -568,8 +540,7 @@ namespace System.Runtime.CompilerServices
         // Mono:WriteUnaligned
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void WriteUnaligned<T>(ref byte destination, T value)
-        {
+        public static void WriteUnaligned<T>(ref byte destination, T value) {
 #if CORECLR
             typeof(T).ToString(); // Type token used by the actual method body
             throw new PlatformNotSupportedException();
@@ -593,8 +564,7 @@ namespace System.Runtime.CompilerServices
         // Mono:AddByteOffset
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ref T AddByteOffset<T>(ref T source, IntPtr byteOffset)
-        {
+        public static ref T AddByteOffset<T>(ref T source, IntPtr byteOffset) {
             // This method is implemented by the toolchain
             throw new PlatformNotSupportedException();
 
@@ -610,8 +580,7 @@ namespace System.Runtime.CompilerServices
 
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T Read<T>(void* source)
-        {
+        public static T Read<T>(void* source) {
             return *(T*)source;
         }
 
@@ -621,8 +590,7 @@ namespace System.Runtime.CompilerServices
 
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Write<T>(void* destination, T value)
-        {
+        public static void Write<T>(void* destination, T value) {
             *(T*)destination = value;
         }
 
@@ -633,8 +601,7 @@ namespace System.Runtime.CompilerServices
 
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ref T AsRef<T>(void* source)
-        {
+        public static ref T AsRef<T>(void* source) {
             return ref *(T*)source;
         }
 
@@ -648,8 +615,7 @@ namespace System.Runtime.CompilerServices
         // Mono:AsRef
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ref T AsRef<T>(scoped in T source)
-        {
+        public static ref T AsRef<T>(scoped in T source) {
             throw new PlatformNotSupportedException();
 
             //ldarg .0
@@ -665,8 +631,7 @@ namespace System.Runtime.CompilerServices
         // Mono:ByteOffset
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static IntPtr ByteOffset<T>([AllowNull] ref T origin, [AllowNull] ref T target)
-        {
+        public static IntPtr ByteOffset<T>([AllowNull] ref T origin, [AllowNull] ref T target) {
             throw new PlatformNotSupportedException();
 
             // ldarg .1
@@ -683,8 +648,7 @@ namespace System.Runtime.CompilerServices
         // AOT:NullRef
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ref T NullRef<T>()
-        {
+        public static ref T NullRef<T>() {
             return ref AsRef<T>(null);
 
             // ldc.i4.0
@@ -703,8 +667,7 @@ namespace System.Runtime.CompilerServices
         // AOT: IsNullRef
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsNullRef<T>(ref T source)
-        {
+        public static bool IsNullRef<T>(ref T source) {
             return AsPointer(ref source) == null;
 
             // ldarg.0
@@ -723,8 +686,7 @@ namespace System.Runtime.CompilerServices
         // Mono:SkipInit
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void SkipInit<T>(out T value)
-        {
+        public static void SkipInit<T>(out T value) {
             throw new PlatformNotSupportedException();
 
             // ret
@@ -737,13 +699,12 @@ namespace System.Runtime.CompilerServices
         // CoreCLR:METHOD__UNSAFE__BYREF_INT_SUBTRACT
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ref T Subtract<T>(ref T source, int elementOffset)
-        {
+        public static ref T Subtract<T>(ref T source, int elementOffset) {
 #if CORECLR
             typeof(T).ToString();
             throw new PlatformNotSupportedException();
 #else
-            return ref SubtractByteOffset(ref source, (IntPtr)(elementOffset * (nint)sizeof(T)));
+            return ref SubtractByteOffset(ref source, elementOffset * (nint)sizeof(T));
 #endif
 
             // ldarg .0
@@ -763,8 +724,7 @@ namespace System.Runtime.CompilerServices
 
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void* Subtract<T>(void* source, int elementOffset)
-        {
+        public static void* Subtract<T>(void* source, int elementOffset) {
 #if CORECLR
             typeof(T).ToString();
             throw new PlatformNotSupportedException();
@@ -788,13 +748,12 @@ namespace System.Runtime.CompilerServices
         // CoreCLR:METHOD__UNSAFE__BYREF_INTPTR_SUBTRACT
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ref T Subtract<T>(ref T source, IntPtr elementOffset)
-        {
+        public static ref T Subtract<T>(ref T source, IntPtr elementOffset) {
 #if CORECLR
             typeof(T).ToString();
             throw new PlatformNotSupportedException();
 #else
-            return ref SubtractByteOffset(ref source, (IntPtr)((nint)elementOffset * sizeof(T)));
+            return ref SubtractByteOffset(ref source, elementOffset * sizeof(T));
 #endif
 
             // ldarg .0
@@ -813,8 +772,7 @@ namespace System.Runtime.CompilerServices
 
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ref T Subtract<T>(ref T source, nuint elementOffset)
-        {
+        public static ref T Subtract<T>(ref T source, nuint elementOffset) {
 #if CORECLR
             typeof(T).ToString();
             throw new PlatformNotSupportedException();
@@ -837,8 +795,7 @@ namespace System.Runtime.CompilerServices
         // CoreCLR:METHOD__UNSAFE__BYREF_INTPTR_SUBTRACT_BYTE_OFFSET
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ref T SubtractByteOffset<T>(ref T source, IntPtr byteOffset)
-        {
+        public static ref T SubtractByteOffset<T>(ref T source, IntPtr byteOffset) {
             throw new PlatformNotSupportedException();
 
             // ldarg .0
@@ -855,8 +812,7 @@ namespace System.Runtime.CompilerServices
 
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ref T SubtractByteOffset<T>(ref T source, nuint byteOffset)
-        {
+        public static ref T SubtractByteOffset<T>(ref T source, nuint byteOffset) {
 #if CORECLR
             typeof(T).ToString();
             throw new PlatformNotSupportedException();
@@ -878,8 +834,7 @@ namespace System.Runtime.CompilerServices
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ref T Unbox<T>(object box)
-            where T : struct
-        {
+            where T : struct {
             throw new PlatformNotSupportedException();
 
             // ldarg .0

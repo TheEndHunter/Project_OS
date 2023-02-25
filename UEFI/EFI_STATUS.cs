@@ -1,7 +1,5 @@
-﻿namespace Efi
-{
-    public enum EFI_STATUS : UIntn
-    {
+﻿namespace Efi {
+    public enum EFI_STATUS : UIntn {
 #if TARGET_64BIT
         /// <summary>
         /// The operation completed successfully.

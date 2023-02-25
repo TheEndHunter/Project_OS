@@ -1,10 +1,8 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace Efi
-{
+namespace Efi {
     [StructLayout(LayoutKind.Sequential)]
-    public static class UnicodeDrawingCharacters
-    {
+    public static class UnicodeDrawingCharacters {
         public const char BOXDRAW_HORIZONTAL = (char)(ushort)0x2500;
         public const char BOXDRAW_VERTICAL = (char)(ushort)0x2502;
         public const char BOXDRAW_DOWN_RIGHT = (char)(ushort)0x250c;

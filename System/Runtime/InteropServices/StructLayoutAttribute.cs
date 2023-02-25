@@ -1,10 +1,7 @@
-﻿namespace System.Runtime.InteropServices
-{
+﻿namespace System.Runtime.InteropServices {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, Inherited = false)]
-    public sealed class StructLayoutAttribute : Attribute
-    {
-        public StructLayoutAttribute(LayoutKind layoutKind)
-        {
+    public sealed class StructLayoutAttribute : Attribute {
+        public StructLayoutAttribute(LayoutKind layoutKind) {
             LayoutKind = layoutKind;
         }
 

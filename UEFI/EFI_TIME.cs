@@ -1,10 +1,8 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace Efi
-{
+namespace Efi {
     [StructLayout(LayoutKind.Sequential)]
-    public struct EFI_TIME
-    {
+    public struct EFI_TIME {
         public ushort Year; // 1900 – 9999
         public byte Month; // 1 – 12
         public byte Day; // 1 – 31

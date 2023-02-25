@@ -3,90 +3,72 @@
 
 using System;
 
-namespace System
-{
-    public abstract class Exception
-    {
+namespace System {
+    public abstract class Exception {
         private string _exceptionString;
 
         public Exception() { }
 
-        public Exception(string str)
-        {
+        public Exception(string str) {
             _exceptionString = str;
         }
     }
-    internal sealed class BadImageFormatException : Exception
-    {
+    internal sealed class BadImageFormatException : Exception {
         public BadImageFormatException() { }
     }
-    internal sealed class NullReferenceException : Exception
-    {
+    internal sealed class NullReferenceException : Exception {
         public NullReferenceException() { }
     }
 
-    internal sealed class InvalidOperationException : Exception
-    {
+    internal sealed class InvalidOperationException : Exception {
         public InvalidOperationException() { }
     }
 
-    internal sealed class ArgumentOutOfRangeException : Exception
-    {
+    internal sealed class ArgumentOutOfRangeException : Exception {
         public ArgumentOutOfRangeException() { }
     }
 
-    internal sealed class IndexOutOfRangeException : Exception
-    {
+    internal sealed class IndexOutOfRangeException : Exception {
         public IndexOutOfRangeException() { }
     }
 
-    internal sealed class ArgumentNullException : Exception
-    {
+    internal sealed class ArgumentNullException : Exception {
         public ArgumentNullException() { }
     }
 
-    internal sealed class NotImplementedException : Exception
-    {
+    internal sealed class NotImplementedException : Exception {
         public NotImplementedException() { }
     }
 
-    internal sealed class NotSupportedException : Exception
-    {
+    internal sealed class NotSupportedException : Exception {
         public NotSupportedException() { }
     }
 
-    internal sealed class PlatformNotSupportedException : Exception
-    {
+    internal sealed class PlatformNotSupportedException : Exception {
         public PlatformNotSupportedException() { }
     }
 
-    internal sealed class InvalidCastException : Exception
-    {
+    internal sealed class InvalidCastException : Exception {
         public InvalidCastException() { }
     }
 
-    internal sealed class ArrayTypeMismatchException : Exception
-    {
+    internal sealed class ArrayTypeMismatchException : Exception {
         public ArrayTypeMismatchException() { }
     }
 
-    internal sealed class OverflowException : Exception
-    {
+    internal sealed class OverflowException : Exception {
         public OverflowException() { }
     }
 
-    internal sealed class ArithmeticException : Exception
-    {
+    internal sealed class ArithmeticException : Exception {
         public ArithmeticException() { }
     }
 
-    internal sealed class DivideByZeroException : Exception
-    {
+    internal sealed class DivideByZeroException : Exception {
         public DivideByZeroException() { }
     }
 
-    internal class OutOfMemoryException : Exception
-    {
+    internal class OutOfMemoryException : Exception {
         public OutOfMemoryException() { }
     }
 }

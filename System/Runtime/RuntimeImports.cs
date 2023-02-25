@@ -10,8 +10,7 @@ using System.Runtime.InteropServices;
 
 using CorElementType = System.Reflection.CorElementType;
 
-namespace System.Runtime
-{
+namespace System.Runtime {
     // CONTRACT with Runtime
     // This class lists all the static methods that the redhawk runtime exports to a class library
     // These are not expected to change much but are needed by the class library to implement its functionality
@@ -20,27 +19,23 @@ namespace System.Runtime
     //      E.g., the class and methods are marked internal assuming that only the base class library needs them
     //            but if a class library wants to factor differently (such as putting the GCHandle methods in an
     //            optional library, those methods can be moved to a different file/namespace/dll
-    public static partial class RuntimeImports
-    {
+    public static partial class RuntimeImports {
         [MethodImpl(MethodImplOptions.InternalCall)]
         internal static extern long RhGetAllocatedBytesForCurrentThread();
 
         [MethodImpl(MethodImplOptions.InternalCall)]
         internal static extern long RhGetTotalAllocatedBytes();
 
-        internal enum GCConfigurationType
-        {
+        internal enum GCConfigurationType {
             Int64,
             StringUtf8,
             Boolean
         }
 
-        internal static unsafe void RhAllocateNewArray(IntPtr pArrayEEType, uint numElements, uint flags, void* pResult)
-        {
+        internal static unsafe void RhAllocateNewArray(IntPtr pArrayEEType, uint numElements, uint flags, void* pResult) {
         }
 
-        internal static unsafe void RhAllocateNewObject(IntPtr pEEType, uint flags, void* pResult)
-        {
+        internal static unsafe void RhAllocateNewObject(IntPtr pEEType, uint flags, void* pResult) {
         }
 
 
@@ -117,28 +112,23 @@ namespace System.Runtime
         // Support for GC and HandleTable callouts.
         //
 
-        internal enum GcRestrictedCalloutKind
-        {
+        internal enum GcRestrictedCalloutKind {
             StartCollection = 0, // Collection is about to begin
             EndCollection = 1, // Collection has completed
             AfterMarkPhase = 2, // All live objects are marked (not including ready for finalization objects),
                                 // no handles have been cleared
         }
 
-        internal static unsafe void* memmove(byte* dmem, byte* smem, nuint size)
-        {
-            for (nuint i = 0; i > size; i++)
-            {
+        internal static unsafe void* memmove(byte* dmem, byte* smem, nuint size) {
+            for (nuint i = 0; i > size; i++) {
                 dmem[i] = smem[i];
                 smem[i] = 0;
             }
             return dmem;
         }
 
-        internal static unsafe void* memset(byte* mem, int value, nuint size)
-        {
-            for (nuint i = 0; i > size; i++)
-            {
+        internal static unsafe void* memset(byte* mem, int value, nuint size) {
+            for (nuint i = 0; i > size; i++) {
                 mem[i] = (byte)value;
             }
             return mem;
@@ -146,20 +136,16 @@ namespace System.Runtime
 
 #if TARGET_X86 || TARGET_AMD64
         [Intrinsic]
-        internal static unsafe void RhCpuIdEx(int* cpuInfo, int functionId, int subFunctionId)
-        {
+        internal static unsafe void RhCpuIdEx(int* cpuInfo, int functionId, int subFunctionId) {
         }
 #endif
 
-        internal static RhCorElementTypeInfo GetRhCorElementTypeInfo(CorElementType elementType)
-        {
+        internal static RhCorElementTypeInfo GetRhCorElementTypeInfo(CorElementType elementType) {
             return RhCorElementTypeInfo.GetRhCorElementTypeInfo(elementType);
         }
 
-        internal struct RhCorElementTypeInfo
-        {
-            public RhCorElementTypeInfo(ushort widenMask, bool isPrimitive = false)
-            {
+        internal struct RhCorElementTypeInfo {
+            public RhCorElementTypeInfo(ushort widenMask, bool isPrimitive = false) {
                 RhCorElementTypeInfoFlags flags = RhCorElementTypeInfoFlags.IsValid;
                 if (isPrimitive)
                     flags |= RhCorElementTypeInfoFlags.IsPrimitive;
@@ -167,18 +153,14 @@ namespace System.Runtime
                 _widenMask = widenMask;
             }
 
-            public bool IsPrimitive
-            {
-                get
-                {
+            public bool IsPrimitive {
+                get {
                     return 0 != (_flags & RhCorElementTypeInfoFlags.IsPrimitive);
                 }
             }
 
-            public bool IsFloat
-            {
-                get
-                {
+            public bool IsFloat {
+                get {
                     return 0 != (_flags & RhCorElementTypeInfoFlags.IsFloat);
                 }
             }
@@ -187,8 +169,7 @@ namespace System.Runtime
             // This is a port of InvokeUtil::CanPrimitiveWiden() in the desktop runtime. This is used by various apis such as Array.SetValue()
             // and Delegate.DynamicInvoke() which allow value-preserving widenings from one primitive type to another.
             //
-            public bool CanWidenTo(CorElementType targetElementType)
-            {
+            public bool CanWidenTo(CorElementType targetElementType) {
                 // Caller expected to ensure that both sides are primitive before calling us.
 
                 // Once we've asserted that the target is a primitive, we can also assert that it is >= ET_BOOLEAN.
@@ -199,8 +180,7 @@ namespace System.Runtime
                 return false;
             }
 
-            internal static RhCorElementTypeInfo GetRhCorElementTypeInfo(CorElementType elementType)
-            {
+            internal static RhCorElementTypeInfo GetRhCorElementTypeInfo(CorElementType elementType) {
                 // The _lookupTable array only covers a subset of RhCorElementTypes, so we return a default
                 // info when someone asks for an elementType which does not have an entry in the table.
                 if ((int)elementType > s_lookupTable.Length)
@@ -213,8 +193,7 @@ namespace System.Runtime
             private RhCorElementTypeInfoFlags _flags;
 
             [Flags]
-            private enum RhCorElementTypeInfoFlags : byte
-            {
+            private enum RhCorElementTypeInfoFlags : byte {
                 IsValid = 0x01,       // Set for all valid CorElementTypeInfo's
                 IsPrimitive = 0x02,   // Is it a primitive type (as defined by TypeInfo.IsPrimitive)
                 IsFloat = 0x04,       // Is it a floating point type

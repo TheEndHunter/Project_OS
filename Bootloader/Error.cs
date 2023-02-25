@@ -3,56 +3,43 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
-namespace bootloader
-{
-    public static unsafe class Error
-    {
-        public const string NewLine = "\r\n";
-        public const string Space = " ";
-        public static void WriteWarning(EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL* buffer, char* errMsg, [CallerArgumentExpression(nameof(errMsg))] string argExp = "", [CallerLineNumber] uint ln = 0, [CallerMemberName] string mn = "", [CallerFilePath] string fp = "")
-        {
-            buffer->SetAttribute(EFI_TEXT_COLOR.YELLOW, EFI_BACKGROUND_COLOR.BLACK);
-            fixed (char* nl = NewLine)
-            {
+namespace bootloader {
+    public static unsafe class Error {
+
+        public static void WriteWarning(EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL* buffer, char* errMsg, [CallerArgumentExpression(nameof(errMsg))] string argExp = "", [CallerLineNumber] uint ln = 0, [CallerMemberName] string mn = "", [CallerFilePath] string fp = "") {
+            buffer->SetAttribute(Program.WarningColor);
+            fixed (char* nl = StringHelp.NewLine) {
                 buffer->OutputString(errMsg);
                 buffer->OutputString(nl);
-                fixed (char* a = mn)
-                {
+                fixed (char* a = mn) {
                     buffer->OutputString(a);
                 }
-                fixed (char* b = Space)
-                {
+                fixed (char* b = StringHelp.Space) {
                     buffer->OutputString(b);
                 }
-                fixed (char* c = fp)
-                {
+                fixed (char* c = fp) {
                     buffer->OutputString(c);
                 }
                 buffer->OutputString(nl);
             }
-            buffer->SetAttribute(EFI_TEXT_COLOR.WHITE, EFI_BACKGROUND_COLOR.BLACK);
+            buffer->SetAttribute(Program.DefaultColor);
         }
 
         [DoesNotReturn]
-        public static void ThrowError(EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL* buffer, char* errMsg, [CallerArgumentExpression(nameof(errMsg))] string argExp = "", [CallerLineNumber] uint ln = 0, [CallerMemberName] string mn = "", [CallerFilePath] string fp = "")
-        {
-            buffer->SetAttribute(EFI_TEXT_COLOR.WHITE, EFI_BACKGROUND_COLOR.BLUE);
+        public static void ThrowError(EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL* buffer, char* errMsg, [CallerArgumentExpression(nameof(errMsg))] string argExp = "", [CallerLineNumber] uint ln = 0, [CallerMemberName] string mn = "", [CallerFilePath] string fp = "") {
+            buffer->SetAttribute(Program.ErrorColor);
             buffer->Reset();
             buffer->ClearScreen();
-            fixed (char* nl = NewLine)
-            {
+            fixed (char* nl = StringHelp.NewLine) {
                 buffer->OutputString(errMsg);
                 buffer->OutputString(nl);
-                fixed (char* a = mn)
-                {
+                fixed (char* a = mn) {
                     buffer->OutputString(a);
                 }
-                fixed (char* b = Space)
-                {
+                fixed (char* b = StringHelp.Space) {
                     buffer->OutputString(b);
                 }
-                fixed (char* c = fp)
-                {
+                fixed (char* c = fp) {
                     buffer->OutputString(c);
                 }
                 buffer->OutputString(nl);
@@ -60,10 +47,8 @@ namespace bootloader
             while (true) ;
         }
 
-        public static bool CheckEFIError(EFI_STATUS s)
-        {
-            return s switch
-            {
+        public static bool CheckEFIError(EFI_STATUS s) {
+            return s switch {
                 EFI_STATUS.LOAD_ERROR => true,
                 EFI_STATUS.INVALID_PARAMETER => true,
                 EFI_STATUS.UNSUPPORTED => true,
@@ -101,10 +86,8 @@ namespace bootloader
             };
         }
 
-        public static char* ToCharPtr(this EFI_STATUS status)
-        {
-            switch (status)
-            {
+        public static char* ToCharPtr(this EFI_STATUS status) {
+            switch (status) {
                 case EFI_STATUS.SUCCESS:
                     return null;
                 case EFI_STATUS.LOAD_ERROR:

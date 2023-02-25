@@ -22,8 +22,7 @@ using System;
 // The format is essentially a collection of variable size records that can reference each other.
 //
 
-namespace Internal.NativeFormat
-{
+namespace Internal.NativeFormat {
     //
     // Bag is the key record type for extensibility. It is a list <id, data> pairs. Data is integer that
     // is interpretted according to the id. It is typically relative offset of another record.
@@ -33,8 +32,7 @@ namespace Internal.NativeFormat
 #else
     internal
 #endif
-    enum BagElementKind : uint
-    {
+    enum BagElementKind : uint {
         End = 0x00,
         BaseType = 0x01,
         ImplementedInterfaces = 0x02,
@@ -70,8 +68,7 @@ namespace Internal.NativeFormat
 #else
     internal
 #endif
-    enum FixupSignatureKind : uint
-    {
+    enum FixupSignatureKind : uint {
         Null = 0x00,
         TypeHandle = 0x01,
         InterfaceCall = 0x02,
@@ -114,8 +111,7 @@ namespace Internal.NativeFormat
 #else
     internal
 #endif
-    enum TypeSignatureKind : uint
-    {
+    enum TypeSignatureKind : uint {
         Null = 0x0,
         Lookback = 0x1, // Go back in the stream for signature continuation (data - number of bytes to go back)
         Modifier = 0x2, // Type modifier (data - TypeModifierKind)
@@ -133,8 +129,7 @@ namespace Internal.NativeFormat
 #else
     internal
 #endif
-    enum TypeModifierKind : uint
-    {
+    enum TypeModifierKind : uint {
         Array = 0x1,
         ByRef = 0x2,
         Pointer = 0x3,
@@ -145,8 +140,7 @@ namespace Internal.NativeFormat
 #else
     internal
 #endif
-    enum StaticDataKind : uint
-    {
+    enum StaticDataKind : uint {
         Gc = 0x1,
         NonGc = 0x2,
     };
@@ -156,8 +150,7 @@ namespace Internal.NativeFormat
 #else
     internal
 #endif
-    enum GenericContextKind : uint
-    {
+    enum GenericContextKind : uint {
         FromThis = 0x00,
         FromHiddenArg = 0x01,
         FromMethodHiddenArg = 0x02,
@@ -172,8 +165,7 @@ namespace Internal.NativeFormat
 #else
     internal
 #endif
-    enum CallingConventionConverterKind : uint
-    {
+    enum CallingConventionConverterKind : uint {
         NoInstantiatingParam = 0x00,   // The calling convention interpreter can assume that the calling convention of the target method has no instantiating parameter
         HasInstantiatingParam = 0x01,   // The calling convention interpreter can assume that the calling convention of the target method has an instantiating parameter
         MaybeInstantiatingParam = 0x02,   // The calling convention interpreter can assume that the calling convention of the target method may be a fat function pointer
@@ -185,8 +177,7 @@ namespace Internal.NativeFormat
 #else
     internal
 #endif
-    enum MethodFlags : uint
-    {
+    enum MethodFlags : uint {
         HasInstantiation = 0x1,
         IsUnboxingStub = 0x2,
         HasFunctionPointer = 0x4,
@@ -199,8 +190,7 @@ namespace Internal.NativeFormat
 #else
     internal
 #endif
-    enum MethodCallingConvention : uint
-    {
+    enum MethodCallingConvention : uint {
         Generic = 0x1,
         Static = 0x2,
     };
@@ -210,8 +200,7 @@ namespace Internal.NativeFormat
 #else
     internal
 #endif
-    enum FieldStorage : uint
-    {
+    enum FieldStorage : uint {
         Instance = 0x0,
         NonGCStatic = 0x1,
         GCStatic = 0x2,

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Efi
-{
+namespace Efi {
     [StructLayout(LayoutKind.Sequential)]
-    public readonly struct SIMPLE_TEXT_OUTPUT_MODE
-    {
+    public readonly struct SIMPLE_TEXT_OUTPUT_MODE {
         public readonly int MaxMode;
         // current settings
         public readonly int Mode;

@@ -10,17 +10,14 @@ using Internal.Runtime;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace System.Runtime
-{
-    internal enum DispatchCellType
-    {
+namespace System.Runtime {
+    internal enum DispatchCellType {
         InterfaceAndSlot = 0x0,
         MetadataToken = 0x1,
         VTableOffset = 0x2,
     }
 
-    internal struct DispatchCellInfo
-    {
+    internal struct DispatchCellInfo {
         public DispatchCellType CellType;
         public EETypePtr InterfaceType;
         public ushort InterfaceSlot;
@@ -32,8 +29,7 @@ namespace System.Runtime
     // Constants used with RhpGetClasslibFunction, to indicate which classlib function
     // we are interested in.
     // Note: make sure you change the def in ICodeManager.h if you change this!
-    internal enum ClassLibFunctionId
-    {
+    internal enum ClassLibFunctionId {
         GetRuntimeException = 0,
         FailFast = 1,
         // UnhandledExceptionHandler = 2, // unused

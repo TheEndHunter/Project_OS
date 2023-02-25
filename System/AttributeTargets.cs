@@ -1,7 +1,5 @@
-﻿namespace System
-{
-    public enum AttributeTargets
-    {
+﻿namespace System {
+    public enum AttributeTargets {
         Assembly = 0x0001,
         Module = 0x0002,
         Class = 0x0004,

@@ -1,7 +1,5 @@
-﻿namespace Efi
-{
-    public enum EFI_BACKGROUND_COLOR : byte
-    {
+﻿namespace Efi {
+    public enum EFI_BACKGROUND_COLOR : byte {
         BLACK = 0x00,
         BLUE = 0x10,
         GREEN = 0x20,

@@ -1,10 +1,8 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace Efi
-{
+namespace Efi {
     [StructLayout(LayoutKind.Sequential)]
-    public struct EFI_GRAPHICS_OUTPUT_MODE_INFORMATION
-    {
+    public struct EFI_GRAPHICS_OUTPUT_MODE_INFORMATION {
         public uint Version;
         public uint HorizontalResolution;
         public uint VerticalResolution;

@@ -1,10 +1,8 @@
 ﻿using System;
 
-namespace Efi
-{
+namespace Efi {
     [Flags]
-    public enum EFI_MEMORY_ATTRIBUTES : ulong
-    {
+    public enum EFI_MEMORY_ATTRIBUTES : ulong {
         /// <summary>
         /// Memory cacheability attribute: The memory region supports being
         // configured as not cacheable. 

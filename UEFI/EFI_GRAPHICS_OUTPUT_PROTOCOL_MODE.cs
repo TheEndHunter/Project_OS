@@ -1,10 +1,8 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace Efi
-{
+namespace Efi {
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct EFI_GRAPHICS_OUTPUT_PROTOCOL_MODE
-    {
+    public unsafe struct EFI_GRAPHICS_OUTPUT_PROTOCOL_MODE {
         public uint MaxMode;
         public uint Mode;
         public EFI_GRAPHICS_OUTPUT_MODE_INFORMATION* Info;

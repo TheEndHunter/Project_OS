@@ -1,5 +1,4 @@
-﻿namespace System
-{
+﻿namespace System {
     public delegate void Action();
     public delegate void Action<in T1>(T1 arg);
     public delegate void Action<in T1, in T2>(T1 arg, T2 arg1);

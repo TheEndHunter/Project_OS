@@ -20,44 +20,35 @@ using EETypeElementType = Internal.Runtime.EETypeElementType;
 using EETypeRef = Internal.Runtime.EETypeRef;
 using MethodTable = Internal.Runtime.MethodTable;
 
-namespace System
-{
+namespace System {
     [StructLayout(LayoutKind.Sequential)]
-    internal unsafe struct EETypePtr
-    {
+    internal unsafe struct EETypePtr {
         private MethodTable* _value;
 
-        public EETypePtr(IntPtr value)
-        {
+        public EETypePtr(IntPtr value) {
             _value = (MethodTable*)value;
         }
 
-        internal EETypePtr(MethodTable* value)
-        {
+        internal EETypePtr(MethodTable* value) {
             _value = value;
         }
 
-        internal MethodTable* ToPointer()
-        {
+        internal MethodTable* ToPointer() {
             return _value;
         }
 
-        public bool Equals(object? obj)
-        {
-            if (obj is EETypePtr)
-            {
+        public bool Equals(object? obj) {
+            if (obj is EETypePtr) {
                 return this == (EETypePtr)obj;
             }
             return false;
         }
 
-        public bool Equals(EETypePtr p)
-        {
+        public bool Equals(EETypePtr p) {
             return this == p;
         }
 
-        public static bool operator ==(EETypePtr value1, EETypePtr value2)
-        {
+        public static bool operator ==(EETypePtr value1, EETypePtr value2) {
             if (value1.IsNull)
                 return value2.IsNull;
             else if (value2.IsNull)
@@ -66,22 +57,19 @@ namespace System
                 return RuntimeImports.AreTypesEquivalent(value1, value2);
         }
 
-        public static bool operator !=(EETypePtr value1, EETypePtr value2)
-        {
+        public static bool operator !=(EETypePtr value1, EETypePtr value2) {
             return !(value1 == value2);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public int GetHashCode()
-        {
+        public int GetHashCode() {
             return (int)_value->HashCode;
         }
 
         //
         // Faster version of Equals for use on EETypes that are known not to be null and where the "match" case is the hot path.
         //
-        public bool FastEquals(EETypePtr other)
-        {
+        public bool FastEquals(EETypePtr other) {
             // Fast check for raw equality before making call to helper.
             if (this.RawValue == other.RawValue)
                 return true;
@@ -89,85 +77,65 @@ namespace System
         }
 
         // Caution: You cannot safely compare RawValue's as RH does NOT unify EETypes. Use the == or Equals() methods exposed by EETypePtr itself.
-        internal IntPtr RawValue
-        {
-            get
-            {
+        internal IntPtr RawValue {
+            get {
                 return (IntPtr)_value;
             }
         }
 
-        internal bool IsNull
-        {
-            get
-            {
+        internal bool IsNull {
+            get {
                 return _value == null;
             }
         }
 
-        internal bool IsArray
-        {
-            get
-            {
+        internal bool IsArray {
+            get {
                 return _value->IsArray;
             }
         }
 
-        internal bool IsSzArray
-        {
-            get
-            {
+        internal bool IsSzArray {
+            get {
                 return _value->IsSzArray;
             }
         }
 
-        internal bool IsPointer
-        {
-            get
-            {
+        internal bool IsPointer {
+            get {
                 return _value->IsPointerType;
             }
         }
 
-        internal bool IsByRef
-        {
-            get
-            {
+        internal bool IsByRef {
+            get {
                 return _value->IsByRefType;
             }
         }
 
-        internal bool IsValueType
-        {
-            get
-            {
+        internal bool IsValueType {
+            get {
                 return _value->IsValueType;
             }
         }
 
-        internal bool IsString
-        {
-            get
-            {
+        internal bool IsString {
+            get {
                 return _value->IsString;
             }
         }
 
         // Warning! UNLIKE the similarly named Reflection api, this method also returns "true" for Enums.
-        internal bool IsPrimitive
-        {
-            get
-            {
+        internal bool IsPrimitive {
+            get {
                 return _value->IsPrimitive;
             }
         }
 
         // WARNING: Never call unless the MethodTable came from an instanced object. Nested enums can be open generics (typeof(Outer<>).NestedEnum)
         // and this helper has undefined behavior when passed such as a enum.
-        internal bool IsEnum
-        {
-            get
-            {
+        internal bool IsEnum {
+            get {
                 // Q: When is an enum type a constructed generic type?
                 // A: When it's nested inside a generic type.
                 if (!(IsDefType))
@@ -180,35 +148,27 @@ namespace System
         }
 
         // Gets a value indicating whether this is a generic type definition (an uninstantiated generic type).
-        internal bool IsGenericTypeDefinition
-        {
-            get
-            {
+        internal bool IsGenericTypeDefinition {
+            get {
                 return _value->IsGenericTypeDefinition;
             }
         }
 
         // Gets a value indicating whether this is an instantiated generic type.
-        internal bool IsGeneric
-        {
-            get
-            {
+        internal bool IsGeneric {
+            get {
                 return _value->IsGeneric;
             }
         }
 
-        internal GenericArgumentCollection Instantiation
-        {
-            get
-            {
+        internal GenericArgumentCollection Instantiation {
+            get {
                 return new GenericArgumentCollection(_value->GenericArity, _value->GenericArguments);
             }
         }
 
-        internal EETypePtr GenericDefinition
-        {
-            get
-            {
+        internal EETypePtr GenericDefinition {
+            get {
                 return new EETypePtr(_value->GenericDefinition);
             }
         }
@@ -216,106 +176,80 @@ namespace System
         /// <summary>
         /// Gets a value indicating whether this is a class, a struct, an enum, or an interface.
         /// </summary>
-        internal bool IsDefType
-        {
-            get
-            {
+        internal bool IsDefType {
+            get {
                 return !_value->IsParameterizedType;
             }
         }
 
-        internal bool IsDynamicType
-        {
-            get
-            {
+        internal bool IsDynamicType {
+            get {
                 return _value->IsDynamicType;
             }
         }
 
-        internal bool IsInterface
-        {
-            get
-            {
+        internal bool IsInterface {
+            get {
                 return _value->IsInterface;
             }
         }
 
-        internal bool IsAbstract
-        {
-            get
-            {
+        internal bool IsAbstract {
+            get {
                 return _value->IsAbstract;
             }
         }
 
-        internal bool IsByRefLike
-        {
-            get
-            {
+        internal bool IsByRefLike {
+            get {
                 return _value->IsByRefLike;
             }
         }
 
-        internal bool IsNullable
-        {
-            get
-            {
+        internal bool IsNullable {
+            get {
                 return _value->IsNullable;
             }
         }
 
-        internal bool HasCctor
-        {
-            get
-            {
+        internal bool HasCctor {
+            get {
                 return _value->HasCctor;
             }
         }
 
-        internal bool IsTrackedReferenceWithFinalizer
-        {
-            get
-            {
+        internal bool IsTrackedReferenceWithFinalizer {
+            get {
                 return _value->IsTrackedReferenceWithFinalizer;
             }
         }
 
-        internal EETypePtr NullableType
-        {
-            get
-            {
+        internal EETypePtr NullableType {
+            get {
                 return new EETypePtr(_value->NullableType);
             }
         }
 
-        internal EETypePtr ArrayElementType
-        {
-            get
-            {
+        internal EETypePtr ArrayElementType {
+            get {
                 return new EETypePtr(_value->RelatedParameterType);
             }
         }
 
-        internal int ArrayRank
-        {
-            get
-            {
+        internal int ArrayRank {
+            get {
                 return _value->ArrayRank;
             }
         }
 
-        internal InterfaceCollection Interfaces
-        {
-            get
-            {
+        internal InterfaceCollection Interfaces {
+            get {
                 return new InterfaceCollection(_value);
             }
         }
 
-        internal EETypePtr BaseType
-        {
-            get
-            {
+        internal EETypePtr BaseType {
+            get {
                 if (IsArray)
                     return EETypePtr.EETypePtrOf<Array>();
 
@@ -327,51 +261,39 @@ namespace System
             }
         }
 
-        internal ushort ComponentSize
-        {
-            get
-            {
+        internal ushort ComponentSize {
+            get {
                 return _value->ComponentSize;
             }
         }
 
-        internal uint BaseSize
-        {
-            get
-            {
+        internal uint BaseSize {
+            get {
                 return _value->BaseSize;
             }
         }
 
-        internal IntPtr DispatchMap
-        {
-            get
-            {
+        internal IntPtr DispatchMap {
+            get {
                 return (IntPtr)_value->DispatchMap;
             }
         }
 
         // Has internal gc pointers.
-        internal bool HasPointers
-        {
-            get
-            {
+        internal bool HasPointers {
+            get {
                 return _value->HasGCPointers;
             }
         }
 
-        internal uint ValueTypeSize
-        {
-            get
-            {
+        internal uint ValueTypeSize {
+            get {
                 return _value->ValueTypeSize;
             }
         }
 
-        internal CorElementType CorElementType
-        {
-            get
-            {
+        internal CorElementType CorElementType {
+            get {
                 EETypeElementType elementType = ElementType;
 
                 if (elementType <= EETypeElementType.UInt64)
@@ -400,83 +322,65 @@ namespace System
             }
         }
 
-        internal EETypeElementType ElementType
-        {
-            get
-            {
+        internal EETypeElementType ElementType {
+            get {
                 return _value->ElementType;
             }
         }
 
-        internal RuntimeImports.RhCorElementTypeInfo CorElementTypeInfo
-        {
-            get
-            {
+        internal RuntimeImports.RhCorElementTypeInfo CorElementTypeInfo {
+            get {
                 return RuntimeImports.GetRhCorElementTypeInfo(CorElementType);
             }
         }
 
-        internal ref T GetWritableData<T>() where T : unmanaged
-        {
+        internal ref T GetWritableData<T>() where T : unmanaged {
             return ref Unsafe.AsRef<T>((void*)_value->WritableData);
         }
 
         [Intrinsic]
-        internal static EETypePtr EETypePtrOf<T>()
-        {
+        internal static EETypePtr EETypePtrOf<T>() {
             // Compilers are required to provide a low level implementation of this method.
             throw new NotImplementedException();
         }
 
-        public struct InterfaceCollection
-        {
+        public struct InterfaceCollection {
             private MethodTable* _value;
 
-            internal InterfaceCollection(MethodTable* value)
-            {
+            internal InterfaceCollection(MethodTable* value) {
                 _value = value;
             }
 
-            public int Count
-            {
-                get
-                {
+            public int Count {
+                get {
                     return _value->NumInterfaces;
                 }
             }
 
-            public EETypePtr this[int index]
-            {
-                get
-                {
+            public EETypePtr this[int index] {
+                get {
                     return new EETypePtr(_value->InterfaceMap[index].InterfaceType);
                 }
             }
         }
 
-        public struct GenericArgumentCollection
-        {
+        public struct GenericArgumentCollection {
             private EETypeRef* _arguments;
             private uint _argumentCount;
 
-            internal GenericArgumentCollection(uint argumentCount, EETypeRef* arguments)
-            {
+            internal GenericArgumentCollection(uint argumentCount, EETypeRef* arguments) {
                 _argumentCount = argumentCount;
                 _arguments = arguments;
             }
 
-            public int Length
-            {
-                get
-                {
+            public int Length {
+                get {
                     return (int)_argumentCount;
                 }
             }
 
-            public EETypePtr this[int index]
-            {
-                get
-                {
+            public EETypePtr this[int index] {
+                get {
                     return new EETypePtr(_arguments[index].Value);
                 }
             }

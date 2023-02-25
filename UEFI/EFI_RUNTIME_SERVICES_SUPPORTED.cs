@@ -1,10 +1,8 @@
 ﻿using System;
 
-namespace Efi
-{
+namespace Efi {
     [Flags]
-    public enum EFI_RUNTIME_SERVICES_SUPPORTED : uint
-    {
+    public enum EFI_RUNTIME_SERVICES_SUPPORTED : uint {
         GET_TIME = 0x0001,
         SET_TIME = 0x0002,
         GET_WAKEUP_TIME = 0x0004,

@@ -1,11 +1,9 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace Efi
-{
+namespace Efi {
     [StructLayout(LayoutKind.Sequential)]
 
-    public struct EFI_VARIABLE_AUTHENTICATION_3_CERT_ID
-    {
+    public struct EFI_VARIABLE_AUTHENTICATION_3_CERT_ID {
         public byte Type;
         public uint IdSize;
         public byte[] Id;

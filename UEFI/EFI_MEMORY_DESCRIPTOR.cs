@@ -1,10 +1,8 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace Efi
-{
+namespace Efi {
     [StructLayout(LayoutKind.Sequential)]
-    public struct EFI_MEMORY_DESCRIPTOR
-    {
+    public struct EFI_MEMORY_DESCRIPTOR {
         public uint Type;
         public EFI_PHYSICAL_ADDRESS PhysicalStart;
         public EFI_VIRTUAL_ADDRESS VirtualStart;

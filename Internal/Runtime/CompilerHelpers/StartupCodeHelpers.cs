@@ -1,12 +1,11 @@
-﻿namespace Internal.Runtime.CompilerHelpers
-{
+﻿namespace Internal.Runtime.CompilerHelpers {
     using System;
     using System.Runtime;
+
     // _A class that the compiler looks for that has helpers to initialize the
     // process. The compiler can gracefully handle the helpers not being present,
     // but the class itself being absent is unhandled. Let's add an empty class.
-    class StartupCodeHelpers
-    {
+    class StartupCodeHelpers {
         // _A couple symbols the generated code will need we park them in this class
         // for no particular reason. These aid in transitioning to/from managed code.
         // Since we don't have a GC, the transition is a no-op.

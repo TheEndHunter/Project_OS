@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Runtime\CompilerHelpers\StartupCodeHelpers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runtime\CompilerHelpers\ThrowHelpers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Runtime\InternalCalls.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Runtime\MethodTable.Constants.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Runtime\MethodTable.cs" />

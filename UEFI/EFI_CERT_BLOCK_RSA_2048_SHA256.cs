@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Efi
-{
+namespace Efi {
     [StructLayout(LayoutKind.Explicit, CharSet = CharSet.Unicode, Size = 640)]
-    public struct EFI_CERT_BLOCK_RSA_2048_SHA256
-    {
+    public struct EFI_CERT_BLOCK_RSA_2048_SHA256 {
         [FieldOffset(0)]
         public Guid HashType;
         [FieldOffset(128)]

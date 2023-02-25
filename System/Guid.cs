@@ -1,11 +1,9 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace System
-{
+namespace System {
     [StructLayout(LayoutKind.Sequential, Size = 16)]
-    public struct Guid
-    {
+    public struct Guid {
         private uint _a;   // Do not rename (binary serialization)
         private ushort _b; // Do not rename (binary serialization)
         private ushort _c; // Do not rename (binary serialization)
@@ -32,8 +30,7 @@ namespace System
 
         [Intrinsic]
         public static readonly Guid Empty;
-        public Guid(uint a, ushort b, ushort c, byte d, byte e, byte f, byte g, byte h, byte i, byte j, byte k)
-        {
+        public Guid(uint a, ushort b, ushort c, byte d, byte e, byte f, byte g, byte h, byte i, byte j, byte k) {
             _a = a;
             _b = b;
             _c = c;
@@ -48,10 +45,8 @@ namespace System
         }
 
         // Creates a new GUID initialized to the _value represented by the arguments.
-        public Guid(int a, short b, short c, byte[] d)
-        {
-            if (d is null || d.Length != 8)
-            {
+        public Guid(int a, short b, short c, byte[] d) {
+            if (d is null || d.Length != 8) {
                 this = default;
                 return;
             }
@@ -71,8 +66,7 @@ namespace System
 
         // Creates a new GUID initialized to the _value represented by the
         // arguments.  The bytes are specified like this to avoid endianness issues.
-        public Guid(int a, short b, short c, byte d, byte e, byte f, byte g, byte h, byte i, byte j, byte k)
-        {
+        public Guid(int a, short b, short c, byte d, byte e, byte f, byte g, byte h, byte i, byte j, byte k) {
             _a = (uint)a;
             _b = (ushort)b;
             _c = (ushort)c;

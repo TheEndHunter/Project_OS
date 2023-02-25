@@ -3,11 +3,9 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Efi
-{
+namespace Efi {
     [StructLayout(LayoutKind.Sequential)]
-    public readonly unsafe struct EFI_RUNTIME_SERVICES
-    {
+    public readonly unsafe struct EFI_RUNTIME_SERVICES {
         public readonly EFI_TABLE_HEADER Hdr;
         //
         // Time Services

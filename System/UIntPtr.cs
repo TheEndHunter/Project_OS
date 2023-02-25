@@ -1,18 +1,14 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace System
-{
+namespace System {
     [StructLayout(LayoutKind.Sequential)]
-    public struct UIntPtr
-    {
+    public struct UIntPtr {
         public static readonly nuint Zero = 0;
-        public UIntPtr(nuint value)
-        {
+        public UIntPtr(nuint value) {
             _value = value;
         }
 
-        public unsafe UIntPtr(void* value)
-        {
+        public unsafe UIntPtr(void* value) {
 #if BIT64
             _value = *(ulong*)(&value);
 #else
@@ -20,35 +16,28 @@ namespace System
 #endif
         }
 
-        public static unsafe explicit operator void*(UIntPtr a)
-        {
+        public static unsafe explicit operator void*(UIntPtr a) {
             return *(void**)&a._value;
         }
-        public static unsafe explicit operator UIntPtr(void* a)
-        {
+        public static unsafe explicit operator UIntPtr(void* a) {
             return new UIntPtr(a);
         }
-        public static bool operator ==(UIntPtr x, UIntPtr y)
-        {
+        public static bool operator ==(UIntPtr x, UIntPtr y) {
             return x._value == y._value;
         }
-        public static bool operator !=(UIntPtr x, UIntPtr y)
-        {
+        public static bool operator !=(UIntPtr x, UIntPtr y) {
             return x._value != y._value;
         }
 #if BIT64
         private ulong _value;
         public static readonly int Size = 8;
-        public UIntPtr(ulong value)
-        {
+        public UIntPtr(ulong value) {
             _value = value;
         }
-        public static explicit operator UIntPtr(ulong a)
-        {
+        public static explicit operator UIntPtr(ulong a) {
             return new UIntPtr(a);
         }
-        public static explicit operator ulong(UIntPtr a)
-        {
+        public static explicit operator ulong(UIntPtr a) {
             return a._value;
         }
 #else

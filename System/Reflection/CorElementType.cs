@@ -1,10 +1,8 @@
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 
-namespace System.Reflection
-{
-    internal enum CorElementType : byte
-    {
+namespace System.Reflection {
+    internal enum CorElementType : byte {
         ELEMENT_TYPE_END = 0x00,
         ELEMENT_TYPE_VOID = 0x01,
         ELEMENT_TYPE_BOOLEAN = 0x02,

@@ -1,10 +1,8 @@
 ﻿using System;
 
-namespace Efi
-{
+namespace Efi {
     [Flags]
-    public enum EFI_OPEN_PROTOCOL : uint
-    {
+    public enum EFI_OPEN_PROTOCOL : uint {
         BY_HANDLE_PROTOCOL = 0x00000001,
         GET_PROTOCOL = 0x00000002,
         TEST_PROTOCOL = 0x00000004,

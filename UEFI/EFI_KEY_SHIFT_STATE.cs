@@ -1,10 +1,8 @@
 ﻿using System;
 
-namespace Efi
-{
+namespace Efi {
     [Flags]
-    public enum EFI_KEY_SHIFT_STATE : uint
-    {
+    public enum EFI_KEY_SHIFT_STATE : uint {
         EFI_SHIFT_STATE_VALID = 0x80000000,
         EFI_RIGHT_SHIFT_PRESSED = 0x00000001,
         EFI_LEFT_SHIFT_PRESSED = 0x00000002,

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Efi
-{
+namespace Efi {
     [StructLayout(LayoutKind.Sequential)]
-    public struct EFI_CAPSULE_HEADER
-    {
+    public struct EFI_CAPSULE_HEADER {
         public Guid CapsuleGuid;
         public uint HeaderSize;
         public CAPSULE_FLAGS Flags;

@@ -1,7 +1,5 @@
-﻿namespace Efi
-{
-    public enum EFI_MEMORY_TYPE
-    {
+﻿namespace Efi {
+    public enum EFI_MEMORY_TYPE {
         EfiReservedMemoryType,
         EfiLoaderCode,
         EfiLoaderData,

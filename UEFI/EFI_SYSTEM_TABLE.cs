@@ -1,11 +1,9 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace Efi
-{
+namespace Efi {
 
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-    public readonly unsafe struct EFI_SYSTEM_TABLE
-    {
+    public readonly unsafe struct EFI_SYSTEM_TABLE {
         public readonly EFI_TABLE_HEADER Hdr;
         public readonly char* FirmwareVendor;
         public readonly uint FirmwareRevision;

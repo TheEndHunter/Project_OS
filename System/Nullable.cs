@@ -3,48 +3,38 @@
 
 using System.Runtime.CompilerServices;
 
-namespace System
-{
+namespace System {
     // Because we have special type system support that says a boxed Nullable<T>
     // can be used where a boxed T is used, Nullable<T> can not implement any interfaces
     // at all (since T may not).
     //
     // Do NOT add any interfaces to Nullable!
 
-    public partial struct Nullable<T> where T : struct
-    {
+    public partial struct Nullable<T> where T : struct {
         private readonly bool hasValue; // Do not rename (binary serialization)
         public T value; // Do not rename (binary serialization) or make readonly (can be mutated in ToString, etc.)
 
-        public Nullable(T value)
-        {
+        public Nullable(T value) {
             this.value = value;
             hasValue = true;
         }
 
-        public readonly bool HasValue
-        {
+        public readonly bool HasValue {
             get => hasValue;
         }
 
-        public readonly T Value
-        {
-            get
-            {
-                if (!hasValue)
-                {
+        public readonly T Value {
+            get {
+                if (!hasValue) {
                     throw new InvalidOperationException();
                 }
                 return value;
             }
         }
 
-        internal ref T GetRef()
-        {
-            unsafe
-            {
-                fixed (T* a = &value)
-                {
+        internal ref T GetRef() {
+            unsafe {
+                fixed (T* a = &value) {
                     return ref Unsafe.AsRef<T>(a);
                 }
             }
@@ -61,23 +51,18 @@ namespace System
         public static explicit operator T(Nullable<T> value) => value!.Value;
     }
 
-    public static class Nullable
-    {
+    public static class Nullable {
         // If the type provided is not a Nullable Type, return null.
         // Otherwise, return the underlying type of the Nullable type
-        public static Type? GetUnderlyingType(Type nullableType)
-        {
-            if (nullableType == null)
-            {
+        public static Type? GetUnderlyingType(Type nullableType) {
+            if (nullableType == null) {
                 throw new ArgumentNullException();
             }
             // This is necessary to handle types without reflection metadata
             var nullableEEType = nullableType.TypeHandle.ToEETypePtr();
 
-            if (nullableEEType.IsGeneric)
-            {
-                if (nullableEEType.IsNullable)
-                {
+            if (nullableEEType.IsGeneric) {
+                if (nullableEEType.IsNullable) {
                     return new Type(new RuntimeTypeHandle(nullableEEType.NullableType.BaseType));
                 }
             }
@@ -95,10 +80,8 @@ namespace System
         /// called when the input reference points to a value with an actual location and not an "rvalue" (an expression that may appear on the right side but not left side of an assignment). That is, if this API is called and the input reference
         /// points to a value that is produced by the compiler as a defensive copy or a temporary copy, the behavior might not match the desired one.
         /// </remarks>
-        public static ref T GetValueRefOrDefaultRef<T>(T? nullable) where T : struct
-        {
-            unsafe
-            {
+        public static ref T GetValueRefOrDefaultRef<T>(T? nullable) where T : struct {
+            unsafe {
                 return ref nullable.GetRef();
             }
         }

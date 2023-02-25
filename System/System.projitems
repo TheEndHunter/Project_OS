@@ -48,15 +48,18 @@
     <Compile Include="$(MSBuildThisFileDirectory)Nullable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Object.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ParamArrayAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ReadOnlySpan.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\CorElementType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\MethodImplAttributes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RuntimeFieldHandle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RuntimeType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Runtime\CompilerServices\CallerArgumentExpressionAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Runtime\CompilerServices\CallerFilePathAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Runtime\CompilerServices\CallerLineNumberAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Runtime\CompilerServices\CallerMemberNameAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Runtime\CompilerServices\MethodCodeType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Runtime\CompilerServices\Unsafe.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runtime\InteropServices\InAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Runtime\RuntimeImports.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RuntimeMethodHandle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RuntimeTypeHandle.cs" />
@@ -75,6 +78,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Runtime\RuntimeExportAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SByte.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Single.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Span.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)String.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Type.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UInt16.cs" />

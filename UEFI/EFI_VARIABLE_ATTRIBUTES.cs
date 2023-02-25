@@ -1,10 +1,8 @@
 ﻿using System;
 
-namespace Efi
-{
+namespace Efi {
     [Flags]
-    public enum EFI_VARIABLE_ATTRIBUTES : uint
-    {
+    public enum EFI_VARIABLE_ATTRIBUTES : uint {
         NON_VOLATILE = 0x00000001,
         BOOTSERVICE_ACCESS = 0x00000002,
         RUNTIME_ACCESS = 0x00000004,

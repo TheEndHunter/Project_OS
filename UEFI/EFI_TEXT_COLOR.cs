@@ -1,7 +1,5 @@
-﻿namespace Efi
-{
-    public enum EFI_TEXT_COLOR : byte
-    {
+﻿namespace Efi {
+    public enum EFI_TEXT_COLOR : byte {
         //*******************************************************
         // Attributes
         //*******************************************************

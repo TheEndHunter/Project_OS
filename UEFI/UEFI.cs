@@ -1,19 +1,14 @@
 ﻿using System;
 
-namespace Efi
-{
-    public static class UEFI
-    {
-        public static class GUIDs
-        {
-            public static class PROTOCOL
-            {
+namespace Efi {
+    public static class UEFI {
+        public static class GUIDs {
+            public static class PROTOCOL {
                 public static readonly Guid EFI_GRAPHICS_OUTPUT_PROTOCOL = new() { a = 0x9042a9de, b = 0x23dc, c = 0x4a38, d = 0x96, e = 0xfb, f = 0x7a, g = 0xde, h = 0xd0, i = 0x80, j = 0x51, k = 0x6a };
                 public static readonly Guid EFI_SIMPLE_TEXT_INPUT_PROTOCOL_GUID = new() { a = 0x387477c1, b = 0x69c7, c = 0x11d2, d = 0x8e, e = 0x39, f = 0x00, g = 0xa0, h = 0xc9, i = 0x69, j = 0x72, k = 0x3b };
                 public static readonly Guid EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_GUID = new() { a = 0x387477c2, b = 0x69c7, c = 0x11d2, d = 0x8e, e = 0x39, f = 0x00, g = 0xa0, h = 0xc9, i = 0x69, j = 0x72, k = 0x3b };
             }
-            public static class EVENT_GROUP
-            {
+            public static class EVENT_GROUP {
                 public static readonly Guid EFI_EVENT_GROUP_EXIT_BOOT_SERVICES = new(0x27abf055, 0xb1b8, 0x4c26, 0x80, 0x48, 0x74, 0x8f, 0x37, 0xba, 0xa2, 0xdf);
                 public static readonly Guid EFI_EVENT_GROUP_BEFORE_EXIT_BOOT_SERVICES = new(0x8be0e274, 0x3970, 0x4b44, 0x80, 0xc5, 0x1a, 0xb9, 0x50, 0x2f, 0x3b, 0xfc);
                 public static readonly Guid EFI_EVENT_GROUP_VIRTUAL_ADDRESS_CHANGE = new(0x13fa7698, 0xc831, 0x49c7, 0x87, 0xea, 0x8f, 0x43, 0xfc, 0xc2, 0x51, 0x96);
@@ -22,12 +17,10 @@ namespace Efi
                 public static readonly Guid EFI_EVENT_GROUP_AFTER_READY_TO_BOOT = new(0x3a2a00ad, 0x98b9, 0x4cdf, 0xa4, 0x78, 0x70, 0x27, 0x77, 0xf1, 0xc1, 0xb);
                 public static readonly Guid EFI_EVENT_GROUP_RESET_SYSTEM = new(0x62da6a56, 0x13fb, 0x485a, 0xa8, 0xda, 0xa3, 0xdd, 0x79, 0x12, 0xcb, 0x6b);
             }
-            public static class DEVICE_TREE_TABLE
-            {
+            public static class DEVICE_TREE_TABLE {
                 public static readonly Guid EFI_DTB_TABLE_GUID = new(0xb1b621d5, 0xf19c, 0x41a5, 0x83, 0x0b, 0xd9, 0x15, 0x2c, 0x69, 0xaa, 0xe0);
             }
-            public static class CERT
-            {
+            public static class CERT {
                 public static readonly Guid EFI_CERT_EXTERNAL_MANAGEMENT_GUID = new(0x452e8ced, 0xdfff, 0x4b8c, 0xae, 0x01, 0x51, 0x18, 0x86, 0x2e, 0x68, 0x2c);
                 public static readonly Guid EFI_CERT_X509_SHA512_GUID = new(0x446dbf63, 0x2502, 0x4cda, 0xbc, 0xfa, 0x24, 0x65, 0xd2, 0xb0, 0xfe, 0x9d);
                 public static readonly Guid EFI_CERT_X509_SHA384_GUID = new(0x7076876e, 0x80c2, 0x4ee6, 0xaa, 0xd2, 0x28, 0xb3, 0x49, 0xa6, 0x86, 0x5b);
